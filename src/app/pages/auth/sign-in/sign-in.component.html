@@ -1,0 +1,63 @@
+<header class="p-3">
+  <nav class="flex justify-between items-center">
+    <a href="./"
+      ><img
+        class="h-10 hover:cursor-pointer"
+        src="../assets/img/Michimed_Logo 1.png"
+        alt="MichiMed Logo"
+    /></a>
+    <i
+      class="bi bi-person-circle fs-1"
+      style="color: var(--text-secondary)"
+    ></i>
+  </nav>
+</header>
+<main class="flex justify-center items-center">
+  <div class="max-w-[500px] text-center">
+    <h1 class="mb-5 fw-bold text-3xl">
+      El bienestar de tu gatito comienza aquí . . .
+    </h1>
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="cedula" class="form-label w-100 text-start">Cédula</label>
+        <input
+          type="cedula"
+          id="cedula"
+          class="form-control"
+          formControlName="cedula"
+          placeholder="Ingresa tu cédula"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label for="password" class="form-label w-100 text-start"
+          >Password</label
+        >
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          formControlName="password"
+          placeholder="Ingresa tu contraseña"
+          required
+        />
+      </div>
+      <button type="submit" class="btn-2 w-100">Ingresar</button>
+    </form>
+  </div>
+</main>
+<footer class="text-center py-8">
+  <div class="mt-10">
+    <a class="no-underline w-5 h-5 text-[var(--text-terciary)]" href="#"
+      >Privacidad y políticas</a
+    >
+    <a class="no-underline w-5 h-5 m-2 text-[var(--text-terciary)]" href="#"
+      >Términos y condiciones</a
+    >
+  </div>
+
+  <p class="mt-2 text-[var(--text-terciary)]">
+    &copy; 2024 MichiMed. Todos los derechos reservados.
+  </p>
+</footer>
+<p-toast></p-toast>
