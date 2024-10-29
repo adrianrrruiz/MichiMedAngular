@@ -46,6 +46,7 @@
         <button
           pButton
           pRipple
+          id="btnNewMascota"
           label="New"
           icon="pi pi-plus"
           class="p-button-success mr-2"
@@ -275,7 +276,11 @@
     <div class="formgrid flex mt-[1.70rem]">
       <div class="field primeng-col mr-3">
         <span class="p-float-label">
-          <p-inputNumber id="edad" [(ngModel)]="mascota.edad"></p-inputNumber>
+          <p-inputNumber
+            id="edad"
+            inputId="edad"
+            [(ngModel)]="mascota.edad"
+          ></p-inputNumber>
           <label htmlFor="edad">Edad (años)</label>
         </span>
         <small class="p-error" *ngIf="submitted && !mascota.edad"
@@ -284,7 +289,11 @@
       </div>
       <div class="field col primeng-col ml-3">
         <span class="p-float-label">
-          <p-inputNumber id="peso" [(ngModel)]="mascota.peso"></p-inputNumber>
+          <p-inputNumber
+            id="peso"
+            inputId="edad"
+            [(ngModel)]="mascota.peso"
+          ></p-inputNumber>
           <label htmlFor="peso">Peso (kg)</label>
         </span>
         <small class="p-error" *ngIf="submitted && !mascota.peso"
@@ -373,6 +382,7 @@
     <button
       pButton
       pRipple
+      id="btnSaveMascota"
       label="Guardar"
       icon="pi pi-check"
       class="p-button-text"
@@ -392,6 +402,7 @@
     <button
       pButton
       pRipple
+      id="btnSaveMascota"
       label="Save"
       icon="pi pi-check"
       class="p-button-text"
