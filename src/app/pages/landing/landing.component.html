@@ -37,7 +37,11 @@
       cuenta para gestionar la salud de tu mascota, o ver y gestionar mascotas
       hospitalizadas si eres veterinario.
     </p>
-    <button (click)="showFindMascotasDialog()" class="btn-2">
+    <button
+      id="btnVerMisMascotas"
+      (click)="showFindMascotasDialog()"
+      class="btn-2"
+    >
       Ver mis mascotas
     </button>
   </section>
@@ -121,7 +125,9 @@
   <div class="flex flex-column gap-2">
     <label for="cedula">Ingrese su cédula</label>
     <input pInputText class="primeng-input" id="cedula" [(ngModel)]="cedula" />
-    <button class="btn-2" (click)="buscarMascota()">Buscar</button>
+    <button id="btnBuscarMascotas" class="btn-2" (click)="buscarMascota()">
+      Buscar
+    </button>
   </div>
 
   <!-- Mostrar mascotas encontradas -->
