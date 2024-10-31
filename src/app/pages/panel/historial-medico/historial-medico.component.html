@@ -7,6 +7,7 @@
   <div class="field mt-[1rem]">
     <label for="mascotas">Seleccione la mascota</label>
     <p-dropdown
+      id="mascotas"
       inputId="mascotas"
       [options]="mascotas"
       optionLabel="nombre"
@@ -18,6 +19,7 @@
     ></p-dropdown>
 
     <p-button
+      id="btnSaveHistorial"
       label="Buscar historial médico"
       [rounded]="true"
       severity="secondary"
