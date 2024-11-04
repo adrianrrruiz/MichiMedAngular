@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';  // Asegúrate de importar HttpClientModule
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';  // Asegúrate de importar HttpClientModule
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Importa ReactiveFormsModule
 
 import { AppRoutingModule } from './app-routing.module';
@@ -50,6 +50,7 @@ import { LinesChartComponent } from './components/lines-chart/lines-chart.compon
 import { DrogasAuxTableComponent } from './components/drogas-aux-table/drogas-aux-table.component';
 import { ProfitComponent } from './components/profit/profit.component';
 import { VeterinariosDsComponent } from './components/veterinarios-ds/veterinarios-ds.component';
+import { AuthInterceptor } from './helpers/auth.interceptor';
 
 
 @NgModule({
@@ -102,7 +103,9 @@ import { VeterinariosDsComponent } from './components/veterinarios-ds/veterinari
     CardModule
   ],
   providers: [
-    DrogaService   // Añade el servicio DrogaService en los providers si es necesario
+    {
+      provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
