@@ -51,6 +51,8 @@ import { DrogasAuxTableComponent } from './components/drogas-aux-table/drogas-au
 import { ProfitComponent } from './components/profit/profit.component';
 import { VeterinariosDsComponent } from './components/veterinarios-ds/veterinarios-ds.component';
 import { AuthInterceptor } from './helpers/auth.interceptor';
+import { AuthGuard } from './auth.guard';
+import { AdminGuard } from './admin.guard';
 
 
 @NgModule({
@@ -105,8 +107,10 @@ import { AuthInterceptor } from './helpers/auth.interceptor';
   providers: [
     {
       provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
-    }
+    },
+    AuthGuard,
+    AdminGuard,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, AuthGuard]
 })
 export class AppModule { }
