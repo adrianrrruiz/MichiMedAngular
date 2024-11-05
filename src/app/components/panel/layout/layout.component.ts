@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { VeterinarioService } from 'src/app/services/veterinario.service';
 
 @Component({
@@ -8,25 +9,28 @@ import { VeterinarioService } from 'src/app/services/veterinario.service';
 })
 export class LayoutComponent implements OnInit {
 
-    isAdmin: boolean = false;
-    urlProfile = '/assets/img/User.png';
-    nombre = 'Administrador';
+  isAdmin: boolean = false;
+  urlProfile = '/assets/img/User.png';
+  nombre = 'Administrador';
 
-    constructor(private veterinarioService: VeterinarioService) { }
+  constructor(private veterinarioService: VeterinarioService, private router: Router) { }
 
-    ngOnInit(): void {
-      const adminStatus = localStorage.getItem('admin');
-      this.isAdmin = adminStatus === 'true'; // Verifica si el usuario es administrador
+  ngOnInit(): void {
+    const adminStatus = localStorage.getItem('admin');
+    this.isAdmin = adminStatus === 'true'; // Verifica si el usuario es administrador
 
-      if (!this.isAdmin) {
-        const veterinarioId = Number(localStorage.getItem('idVeterinario'));
-        this.veterinarioService
-          .getVeterinarioById(veterinarioId).subscribe((veterinario) => {
-            this.urlProfile = veterinario.urlFoto;
-            this.nombre = veterinario.nombre;
-          });
-      }
-
-
+    if (!this.isAdmin) {
+      const veterinarioId = Number(localStorage.getItem('idVeterinario'));
+      this.veterinarioService
+        .getVeterinarioById(veterinarioId).subscribe((veterinario) => {
+          this.urlProfile = veterinario.urlFoto;
+          this.nombre = veterinario.nombre;
+        });
     }
+  }
+
+  logout(): void {
+    localStorage.clear();
+    this.router.navigate(['/sign-in']);
+  }
 }
