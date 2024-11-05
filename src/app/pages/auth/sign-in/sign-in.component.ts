@@ -31,10 +31,11 @@ export class SignInComponent {
   onSubmit(): void {
     if (this.signInForm.valid) {
       const user: User = this.signInForm.value;
-      this.http.post<{id:number,  admin: boolean }>('http://localhost:8090/sign-in', user).subscribe(
+      this.http.post<{id:number,  isAdmin: boolean, token: string }>('http://localhost:8090/sign-in', user).subscribe(
         response => {
           localStorage.clear();
-          if(response.admin){
+          localStorage.setItem('token', response.token);
+          if(response.isAdmin){
             localStorage.setItem('admin', 'true');
             localStorage.setItem('idAdmin', response.id.toString());
             this.router.navigate(['/admin/dashboard']); // Navega al dashboard de administrador
@@ -50,7 +51,7 @@ export class SignInComponent {
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: error.error.message || 'Ha ocurrido un error durante el inicio de sesión'
+            detail: 'Usuario o contraseña incorrectos'
           });
         }
       );
