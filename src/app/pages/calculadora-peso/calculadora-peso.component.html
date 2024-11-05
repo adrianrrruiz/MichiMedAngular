@@ -1,0 +1,105 @@
+<header class="p-3">
+  <nav class="flex justify-between items-center">
+    <a href="./">
+      <img
+        class="h-10 hover:cursor-pointer"
+        src="../assets/img/Michimed_Logo 1.png"
+        alt="MichiMed Logo"
+      />
+    </a>
+    <i
+      class="bi bi-person-circle fs-1"
+      style="color: var(--text-secondary)"
+    ></i>
+  </nav>
+</header>
+
+<main class="flex justify-center items-center">
+  <div class="max-w-[500px] text-center">
+    <h1 class="mb-5 fw-bold text-3xl">
+      Calculadora del peso ideal para tu gatito 😺
+    </h1>
+    <form (submit)="calcularPesoIdeal()">
+      <div class="mb-3">
+        <label for="categoria" class="form-label w-100 text-start"
+          >Categoría</label
+        >
+        <select
+          id="categoria"
+          [(ngModel)]="categoria"
+          class="form-select"
+          required
+        >
+          <option value="" disabled selected>
+            Selecciona la categoría de tu gatito
+          </option>
+          <option value="domestico">Gato doméstico, común</option>
+          <option value="persa">Gato persa</option>
+          <option value="siames">Gato siamés</option>
+          <option value="maine_coon">Gato maine coon</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="edad" class="form-label w-100 text-start"
+          >Edad (en años)</label
+        >
+        <input
+          type="number"
+          id="edad"
+          class="form-control"
+          formControlName="edad"
+          placeholder="Ingresa la edad de tu gatito"
+          [(ngModel)]="edad"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label for="peso" class="form-label w-100 text-start"
+          >Peso actual (en kg)</label
+        >
+        <input
+          type="number"
+          id="peso"
+          class="form-control"
+          formControlName="peso"
+          placeholder="Ingresa el peso actual de tu gatito"
+          [(ngModel)]="peso"
+          required
+        />
+      </div>
+      <button type="submit" class="btn-2 w-100">Calcular</button>
+    </form>
+
+    <div *ngIf="pesoIdeal !== null" class="mt-6">
+      <h2 class="text-xl font-semibold text-gray-800">
+        Peso Ideal: {{ pesoIdeal }} kg
+      </h2>
+      <p *ngIf="peso !== null && peso < pesoIdeal.min" class="text-blue-600">
+        Tu gato está por debajo de su peso ideal.
+      </p>
+      <p *ngIf="peso !== null && peso > pesoIdeal.max" class="text-red-600">
+        Tu gato está por encima de su peso ideal.
+      </p>
+      <p
+        *ngIf="peso !== null && peso >= pesoIdeal.min && peso <= pesoIdeal.max"
+        class="text-green-600"
+      >
+        ¡Tu gato tiene un peso ideal!
+      </p>
+    </div>
+  </div>
+</main>
+
+<footer class="text-center py-8">
+  <div class="mt-10">
+    <a class="no-underline w-5 h-5 text-[var(--text-terciary)]" href="#"
+      >Privacidad y políticas</a
+    >
+    <a class="no-underline w-5 h-5 m-2 text-[var(--text-terciary)]" href="#"
+      >Términos y condiciones</a
+    >
+  </div>
+  <p class="mt-2 text-[var(--text-terciary)]">
+    &copy; 2024 MichiMed. Todos los derechos reservados.
+  </p>
+</footer>

@@ -53,6 +53,7 @@ import { VeterinariosDsComponent } from './components/veterinarios-ds/veterinari
 import { AuthInterceptor } from './helpers/auth.interceptor';
 import { AuthGuard } from './auth.guard';
 import { AdminGuard } from './admin.guard';
+import { CalculadoraPesoComponent } from './pages/calculadora-peso/calculadora-peso.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { AdminGuard } from './admin.guard';
     DrogasAuxTableComponent,
     ProfitComponent,
     LoaderComponent,
-    VeterinariosDsComponent
+    VeterinariosDsComponent,
+    CalculadoraPesoComponent
   ],
   imports: [
     BrowserModule,

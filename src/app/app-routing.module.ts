@@ -11,6 +11,7 @@ import { DrogasComponent } from './pages/panel/drogas/drogas.component';
 import { HistorialMedicoComponent } from './pages/panel/historial-medico/historial-medico.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { CalculadoraPesoComponent } from './pages/calculadora-peso/calculadora-peso.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'drogas', component: DrogasComponent, canActivate: [AuthGuard] },
   { path: 'historial-medico', component: HistorialMedicoComponent, canActivate: [AuthGuard] },
   { path: 'historial-medico/:id', component: HistorialMedicoComponent, canActivate: [AuthGuard] },
+  { path: 'calculadora-peso', component: CalculadoraPesoComponent },
   { path: '', component: LandingComponent },
   { path: '**', component: ErrorComponent }
 ];
