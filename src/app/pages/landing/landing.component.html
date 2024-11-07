@@ -44,40 +44,27 @@
     >
       Ver mis mascotas
     </button>
-    <button
-      id="btnCalculadoraPeso"
-      class="py-2 px-4 bg-pink-500 text-white font-bold rounded-lg hover:bg-pink-600 transition duration-300"
-      routerLink="/calculadora-peso"
-    >
-      Calculadora de Peso Ideal para Gatos
-    </button>
   </section>
   <section class="service-grid">
-    <div class="service-item">
-      <img
-        src="../assets/icons/search.svg"
-        alt="Seguimiento del Estado de la Mascota"
-      />
-      <h3>Seguimiento del Estado de la Mascota</h3>
-      <p>Revisa el estado de tu mascota hospitalizada</p>
+    <div class="service-item cursor-pointer" (click)="openNewWindow('tienda')">
+      <i class="pi pi-cart-plus text-4xl"></i>
+      <h3>Tienda Exclusiva para Gatitos</h3>
+      <p>
+        Descubre nuestros productos especialmente seleccionados para tu gato
+      </p>
     </div>
-    <div class="service-item">
-      <img
-        src="../assets/icons/document.svg"
-        alt="Ingreso de Registros Médicos"
-      />
-      <h3>Ingreso de Registros Médicos</h3>
-      <p>Consulta el historial médico de tu mascota.</p>
+    <div
+      class="service-item cursor-pointer"
+      (click)="openNewWindow('calculadora')"
+    >
+      <i class="pi pi-calculator text-4xl"></i>
+      <h3>Calculadora de Peso Ideal</h3>
+      <p>Asegúrate de que tu mascota esté en su peso óptimo</p>
     </div>
-    <div class="service-item">
-      <img src="../assets/icons/person.svg" alt="Registro de Clientes" />
-      <h3>Registro de Clientes</h3>
-      <p>Crea una cuenta para gestionar la salud de tu mascota.</p>
-    </div>
-    <div class="service-item">
-      <img src="../assets/icons/person-2.svg" alt="Gestión para Veterinarios" />
-      <h3>Gestión de Veterinarios</h3>
-      <p>Para veterinarios que gestionan mascotas hospitalizadas.</p>
+    <div class="service-item cursor-pointer" (click)="openNewWindow('blogs')">
+      <i class="pi pi-bookmark text-4xl"></i>
+      <h3>Recursos Educativos para Dueños de Gatos</h3>
+      <p>Explora artículos y guías para cuidar mejor a tu mascota</p>
     </div>
   </section>
   <section id="additional-services">
@@ -118,6 +105,15 @@
       <button type="submit" class="btn-3">Enviar</button>
     </form>
   </section>
+  <!-- Botón de WhatsApp -->
+  <a
+    href="https://wa.me/3182273533"
+    target="_blank"
+    class="no-underline fixed bottom-5 right-5 bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600"
+    aria-label="Chat en WhatsApp"
+  >
+    <i class="pi pi-whatsapp text-xl"></i>
+  </a>
 </main>
 
 <app-footer></app-footer>

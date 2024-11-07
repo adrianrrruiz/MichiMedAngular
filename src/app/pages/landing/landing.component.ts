@@ -126,4 +126,18 @@ export class LandingComponent {
 
     setInterval(nextSlide, 5000);
   }
+
+  openNewWindow(objective: string) {
+    switch (objective) {
+      case 'calculadora':
+        window.open('/calculadora-peso', '_blank');
+        break;
+      case 'blog':
+        window.open('/blogs', '_blank');
+        break;
+      case 'tienda':
+        window.open('/tienda', '_blank');
+        break;
+    }
+  }
 }
