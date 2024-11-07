@@ -12,11 +12,13 @@ import { HistorialMedicoComponent } from './pages/panel/historial-medico/histori
 import { LandingComponent } from './pages/landing/landing.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { CalculadoraPesoComponent } from './pages/calculadora-peso/calculadora-peso.component';
+import { VeterinariosComponent } from './pages/panel/veterinarios/veterinarios.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'admin/dashboard', component: DashboardComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'admin/veterinarios', component: VeterinariosComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'mascotas', component: MascotasComponent, canActivate: [AuthGuard] },
   { path: 'clientes', component: ClientesComponent, canActivate: [AuthGuard] },
   { path: 'drogas', component: DrogasComponent, canActivate: [AuthGuard] },

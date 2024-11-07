@@ -75,10 +75,6 @@ mark {
 
 /* SERVICES */
 
-#online-services button {
-  margin-top: 20px;
-}
-
 .service-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajuste automático de columnas */
@@ -171,102 +167,6 @@ mark {
   border-radius: 40px;
 }
 
-#contact-email h2 {
-  margin-bottom: 5px;
-  font-size: 200%;
-}
-
-#contact-email button {
-  margin-top: 20px;
-  justify-self: center;
-}
-
-
-#contact {
-  /* background-image: url('../assets/img/paw.jpg'); */
-  padding: 4rem 0;
-  text-align: center;
-  align-self: center;
-  margin-top: 40px;
-  border: 4px solid var(--color-1);
-  border-radius: 40px;
-  width: 100%;
-  margin-bottom: 50px;
-}
-
-#contact h1 {color:var(--color-1)}
-
-form {
-  max-width: 500px;
-  margin: 2rem auto;
-  display: flex;
-  flex-direction: column;
-}
-
-form h3 {
-  align-self: flex-start;
-  font-size: 15px;
-  font-weight: 400;
-  color: var(--color-1);
-  margin-bottom: 5px;
-}
-
-form input, textarea {
-  margin-bottom: 1rem;
-  padding: 0.75rem;
-  border: 1px solid var(--color-1);
-  border-radius: 15px;
-  font-weight: 100;
-}
-
-form input{height: 60px;}
-
-form input::placeholder{color: var(--text-secondary);}
-
-.Message {height: 200px;}
-
-
-
-@media (max-width: 768px) {
-  nav ul {display: none;}
-
-  #hero {height: 300px;}
-}
-
-.service-grid, #additional-services .adservice-item{
-  margin: 50px auto;
-  max-width: 100%;
-  padding: 1px;
-  text-align: center;
-  min-width: 20%;
-  flex-wrap: wrap;
-  justify-content: center;
-  height: 50%;
-}
-
-.adservice-item {
-  padding: 1.5rem;
-  flex-basis: 30%; /* Set the width of each item to 30% of the parent element */
-  border-radius: 10px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.adservice-item img {
-  width: 100%; /* Make the image width relative to its parent */
-  height: 20vh; /* Make the image height relative to the viewport height */
-  margin-bottom: 1rem;
-  border-radius: 10px;
-}
-
-.adservice-item p {
-  text-align: center;
-  color: var(--text-secondary);
-}
-
-
 #online-services p{
   text-align: flex-start;
   max-width: 100%;
@@ -280,60 +180,6 @@ form input::placeholder{color: var(--text-secondary);}
   margin-top:  40px;
 }
 
-.email-item {
-  border-radius: 38px;
-  background-color: var(--color-gainsboro-200);
-  text-align: center;
-  margin: 0 auto; /* Centra el elemento horizontalmente */
-  padding: 20px; /* Agrega espacio entre el contenido y los bordes */
-  width: 100%; /* Establece el ancho del elemento */
-  max-width: 60%; /* Establece un ancho máximo para que no se vuelva demasiado ancho */
-  min-height: 150px; /* Establece una altura mínima para el elemento */
-}
 
-.mascota-card {
-  max-width: 250px; /* Ajusta el ancho máximo de las tarjetas */
-  margin: 10px auto; /* Centra las tarjetas con un margen alrededor */
-  padding: 20px; /* Espaciado interno */
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  text-align: center; /* Alinea el contenido al centro */
-}
 
-.mascota-card img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%; /* Hace la imagen circular */
-  object-fit: cover; /* Asegura que la imagen se vea bien */
-  margin-bottom: 15px;
-}
 
-.mascota-card ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.mascota-card li {
-  margin-bottom: 10px;
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.mascota-card strong {
-  font-weight: bold;
-  display: block;
-}
-
-/* Ajuste de la grilla para mejor alineación */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adaptación automática */
-  gap: 1rem; /* Espaciado entre las tarjetas */
-}
-
-.mascota-card p {
-  text-align: center;
-  color: var(--text-secondary);
-}
