@@ -167,17 +167,26 @@ mark {
   border-radius: 40px;
 }
 
+#online-services {
+  text-align: center;
+}
 #online-services p{
-  text-align: flex-start;
-  max-width: 100%;
   margin-top: 27px;
   margin-bottom: 20px;
-  max-width: 60%;
 }
 
 #online-services h2{
   font-size: 300%;
   margin-top:  40px;
+}
+
+@media (min-width: 768px) {
+  #online-services{
+    text-align: left !important;
+  }
+  #online-services p{
+    max-width: 60%;
+  }
 }
 
 

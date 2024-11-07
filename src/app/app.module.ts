@@ -23,9 +23,15 @@ import { DashboardComponent } from './pages/panel/dashboard/dashboard.component'
 import { SuministrarTratamientosComponent } from './pages/panel/suministrar-tratamientos/suministrar-tratamientos.component';
 import { HistorialMedicoComponent } from './pages/panel/historial-medico/historial-medico.component';
 import { LoaderComponent } from './components/loader/loader.component';
-
-// Servicios (asegúrate de crear e importar el servicio si es necesario)
-import { DrogaService } from './services/drogas.service';  // Importa el servicio DrogaService
+import { CalculadoraPesoComponent } from './pages/calculadora-peso/calculadora-peso.component';
+import { CircularDiagramComponent } from './components/circular-diagram/circular-diagram.component';
+import { LinesChartComponent } from './components/lines-chart/lines-chart.component';
+import { DrogasAuxTableComponent } from './components/drogas-aux-table/drogas-aux-table.component';
+import { ProfitComponent } from './components/profit/profit.component';
+import { VeterinariosDsComponent } from './components/veterinarios-ds/veterinarios-ds.component';
+import { AuthInterceptor } from './helpers/auth.interceptor';
+import { AuthGuard } from './auth.guard';
+import { AdminGuard } from './admin.guard';
 
 // PrimeNG Components
 import { TableModule } from 'primeng/table';
@@ -45,15 +51,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TimelineModule } from 'primeng/timeline';
 import { CardModule } from 'primeng/card';
-import { CircularDiagramComponent } from './components/circular-diagram/circular-diagram.component';
-import { LinesChartComponent } from './components/lines-chart/lines-chart.component';
-import { DrogasAuxTableComponent } from './components/drogas-aux-table/drogas-aux-table.component';
-import { ProfitComponent } from './components/profit/profit.component';
-import { VeterinariosDsComponent } from './components/veterinarios-ds/veterinarios-ds.component';
-import { AuthInterceptor } from './helpers/auth.interceptor';
-import { AuthGuard } from './auth.guard';
-import { AdminGuard } from './admin.guard';
-import { CalculadoraPesoComponent } from './pages/calculadora-peso/calculadora-peso.component';
+import { PanelMenuModule } from 'primeng/panelmenu';
 
 
 @NgModule({
@@ -104,7 +102,8 @@ import { CalculadoraPesoComponent } from './pages/calculadora-peso/calculadora-p
     FileUploadModule,
     MultiSelectModule,
     TimelineModule,
-    CardModule
+    CardModule,
+    PanelMenuModule
   ],
   providers: [
     {

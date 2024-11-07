@@ -1,5 +1,6 @@
 <header class="sticky top-0 p-3 bg-[var(--color-1)] z-50">
   <nav class="flex justify-between items-center">
+    <!-- Logo -->
     <div class="flex items-center">
       <img
         class="h-10 hover:cursor-pointer"
@@ -7,26 +8,47 @@
         alt="MichiMed Logo"
       />
     </div>
-    <ul class="flex items-center list-none mr-5 mb-0">
-      <li class="ml-8">
+
+    <!-- Menú hamburguesa para pantallas pequeñas -->
+    <button
+      class="btn-1 text-2xl md:hidden focus:outline-none"
+      (click)="toggleMenu()"
+      aria-label="Toggle Menu"
+    >
+      <i class="pi pi-bars"></i>
+    </button>
+
+    <!-- Menú de Navegación en Pantallas Grandes -->
+    <ul
+      class="hidden md:flex items-center text-center list-none mr-5 mb-0 space-x-8"
+    >
+      <li>
         <a class="no-underline text-[var(--white)]" href="#hero">Inicio</a>
       </li>
-      <li class="ml-8">
+      <li>
         <a class="no-underline text-[var(--white)]" href="#online-services"
           >Servicios</a
         >
       </li>
-      <li class="ml-8">
+      <li>
         <a class="no-underline text-[var(--white)]" href="#contact-email"
           >Correo Electrónico</a
         >
       </li>
-      <li class="ml-8">
+      <li>
         <a class="no-underline text-[var(--white)]" href="#contact">Contacto</a>
       </li>
-      <a routerLink="/sign-in"
-        ><button id="logInButton" class="btn-1 ml-8">Iniciar sesión</button></a
-      >
+      <a routerLink="/sign-in">
+        <button id="logInButton" class="btn-1">Iniciar sesión</button>
+      </a>
     </ul>
+
+    <!-- Menú desplegable de PrimeNG para pantallas pequeñas -->
+    <p-panelMenu
+      *ngIf="menuOpen"
+      [model]="menuItems"
+      class="md:hidden absolute top-16 right-5 w-64 bg-[var(--color-1)] rounded-lg shadow-lg text-white"
+    >
+    </p-panelMenu>
   </nav>
 </header>

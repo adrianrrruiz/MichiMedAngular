@@ -85,7 +85,7 @@
     </div>
   </section>
 
-  <section id="contact-email">
+  <section id="contact-email" class="text-center">
     <h2>¿Preguntas sobre los servicios que ofrecemos?</h2>
     <p>Contáctanos en <strong>info@michimed.com</strong></p>
     <button class="btn-2">Envíanos un Correo</button>
@@ -101,7 +101,7 @@
         class="bg-gray-100 p-6 rounded-lg shadow-md flex flex-col items-center text-center"
       >
         <img
-          src="https://via.placeholder.com/80"
+          src="https://randomuser.me/api/portraits/men/1.jpg"
           alt="Cliente"
           class="w-20 h-20 rounded-full mb-4 object-cover"
         />
@@ -117,7 +117,7 @@
         class="bg-gray-100 p-6 rounded-lg shadow-md flex flex-col items-center text-center"
       >
         <img
-          src="https://via.placeholder.com/80"
+          src="https://randomuser.me/api/portraits/women/2.jpg"
           alt="Cliente"
           class="w-20 h-20 rounded-full mb-4 object-cover"
         />
@@ -133,7 +133,7 @@
         class="bg-gray-100 p-6 rounded-lg shadow-md flex flex-col items-center text-center"
       >
         <img
-          src="https://via.placeholder.com/80"
+          src="https://randomuser.me/api/portraits/men/3.jpg"
           alt="Cliente"
           class="w-20 h-20 rounded-full mb-4 object-cover"
         />
@@ -147,6 +147,7 @@
   </section>
 
   <section
+    id="contact"
     class="px-6 py-10 text-center border-solid border-[var(--color-1)] rounded-3xl w-full mt-10 mb-12"
   >
     <h1 class="text-[var(--color-1)] text-3xl font-bold mb-8">Contáctanos</h1>
@@ -275,7 +276,6 @@
 <p-dialog
   header="Buscar mis mascotas"
   [(visible)]="findMascotasDialog"
-  [style]="{ width: '30vw' }"
   [modal]="true"
 >
   <div class="flex flex-column gap-2">
