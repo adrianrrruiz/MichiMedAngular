@@ -14,19 +14,26 @@
   </nav>
 </header>
 
-<main class="flex justify-center items-center">
-  <div class="max-w-[500px] text-center">
+<main class="flex flex-col-reverse md:grid md:grid-cols-2 gap-10">
+  <figure class="justify-self-end">
+    <img
+      class="object-contain w-full h-[60vh] rounded-xl"
+      src="https://www.veterinariasanjuan.com.ar/wp-content/uploads/cuantos-kilos-es-obesidad-en-un-gato-2.webp"
+      alt="Tabla para saber si mi gato esta en sobrepeso"
+    />
+  </figure>
+  <div class="text-center self-center justify-self-start p-4">
     <h1 class="mb-5 fw-bold text-3xl">
       Calculadora del peso ideal para tu gatito 😺
     </h1>
-    <form (submit)="calcularPesoIdeal()">
+    <form [formGroup]="pesoForm" (ngSubmit)="calcularPesoIdeal()">
       <div class="mb-3">
         <label for="categoria" class="form-label w-100 text-start"
           >Categoría</label
         >
         <select
           id="categoria"
-          [(ngModel)]="categoria"
+          formControlName="categoria"
           class="form-select"
           required
         >
@@ -34,24 +41,21 @@
             Selecciona la categoría de tu gatito
           </option>
           <option value="domestico">Gato doméstico, común</option>
+          <option value="himalayo">Gato himalayo</option>
           <option value="persa">Gato persa</option>
           <option value="siames">Gato siamés</option>
           <option value="maine_coon">Gato maine coon</option>
         </select>
       </div>
       <div class="mb-3">
-        <label for="edad" class="form-label w-100 text-start"
-          >Edad (en años)</label
-        >
-        <input
-          type="number"
-          id="edad"
-          class="form-control"
-          formControlName="edad"
-          placeholder="Ingresa la edad de tu gatito"
-          [(ngModel)]="edad"
-          required
-        />
+        <label for="sexo" class="form-label w-100 text-start">Sexo</label>
+        <select id="sexo" formControlName="sexo" class="form-select" required>
+          <option value="" disabled selected>
+            Selecciona el sexo de tu gatito
+          </option>
+          <option value="macho">Macho</option>
+          <option value="hembra">Hembra</option>
+        </select>
       </div>
       <div class="mb-4">
         <label for="peso" class="form-label w-100 text-start"
@@ -60,33 +64,14 @@
         <input
           type="number"
           id="peso"
-          class="form-control"
           formControlName="peso"
+          class="form-control"
           placeholder="Ingresa el peso actual de tu gatito"
-          [(ngModel)]="peso"
           required
         />
       </div>
       <button type="submit" class="btn-2 w-100">Calcular</button>
     </form>
-
-    <div *ngIf="pesoIdeal !== null" class="mt-6">
-      <h2 class="text-xl font-semibold text-gray-800">
-        Peso Ideal: {{ pesoIdeal }} kg
-      </h2>
-      <p *ngIf="peso !== null && peso < pesoIdeal.min" class="text-blue-600">
-        Tu gato está por debajo de su peso ideal.
-      </p>
-      <p *ngIf="peso !== null && peso > pesoIdeal.max" class="text-red-600">
-        Tu gato está por encima de su peso ideal.
-      </p>
-      <p
-        *ngIf="peso !== null && peso >= pesoIdeal.min && peso <= pesoIdeal.max"
-        class="text-green-600"
-      >
-        ¡Tu gato tiene un peso ideal!
-      </p>
-    </div>
   </div>
 </main>
 
@@ -103,3 +88,20 @@
     &copy; 2024 MichiMed. Todos los derechos reservados.
   </p>
 </footer>
+
+<p-dialog
+  header="Resultado del Peso Ideal"
+  [(visible)]="visible"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div *ngIf="mensajePeso" class="text-center">
+    <i
+      [class]="mensajePeso.icono"
+      [ngClass]="mensajePeso.color"
+      style="font-size: 2rem"
+    ></i>
+    <p class="m-4" [ngClass]="mensajePeso.color">{{ mensajePeso.texto }}</p>
+  </div>
+</p-dialog>
