@@ -29,6 +29,11 @@ export class ClienteService {
     return this.http.get<Cliente>('http://localhost:8090/clientes/' + id);
   }
 
+  // Método para obtener un cliente por su id
+  getClienteByCedula(cedula: string): Observable<Cliente> {
+    return this.http.get<Cliente>('http://localhost:8090/clientes/cedula/' + cedula);
+  }
+
   // Método para agregar un nuevo cliente
   addCliente(cliente: Cliente) {
     this.http.post('http://localhost:8090/clientes/add', cliente).subscribe();

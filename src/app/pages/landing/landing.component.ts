@@ -21,16 +21,6 @@ export class LandingComponent {
   tratamientos: HistorialMedicoDTO[] = [];
 
   constructor(private clienteService: ClienteService, private messageService: MessageService, private tratamientoService: TratamientoService) {
-    // Carga los clientes al incializar el componente
-    this.clienteService.getClientes().subscribe(
-      (clientes: any[]) => {
-        this.clientes = clientes;
-      },
-      (error) => {
-        console.error('Error al cargar los clientes:', error);
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al cargar los clientes.' });
-      }
-    );
   }
 
   getSeverity(status: string): string {
@@ -54,14 +44,9 @@ export class LandingComponent {
       return;
     }
 
-    this.mascotas = [];
-    let clienteEncontrado = false;
-
-    for (const cliente of this.clientes) {
-      if (cliente.cedula && cliente.cedula === cedulaTrimmed) {
-        clienteEncontrado = true;
-
-        this.clienteService.getClienteMascotas(cliente.id).subscribe(
+    this.clienteService.getClienteByCedula(cedulaTrimmed).subscribe(
+      (cliente) => {
+        this.clienteService.getClienteMascotas(cliente.id!).subscribe(
           (clienteMascotas: Mascota[]) => {
             if (clienteMascotas.length > 0) {
               this.mascotas = clienteMascotas;
@@ -71,17 +56,15 @@ export class LandingComponent {
           },
           (error) => {
             console.error('Error al obtener mascotas:', error);
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al buscar las mascotas del cliente.' });
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al obtener las mascotas del cliente' });
           }
         );
-        break; // Cliente encontrado, no es necesario seguir iterando
+      },
+      (error) => {
+        console.error('Error al obtener cliente:', error);
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se encontró un cliente con la cédula ingresada' });
       }
-    }
-
-    if (!clienteEncontrado) {
-      console.log('Cliente no encontrado con esa cédula.');
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se encontró un cliente con la cédula ingresada.' });
-    }
+    );
   }
 
   showFindMascotasDialog() {
