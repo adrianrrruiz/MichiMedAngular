@@ -14,6 +14,7 @@ import { ErrorComponent } from './pages/error/error.component';
 import { CalculadoraPesoComponent } from './pages/calculadora-peso/calculadora-peso.component';
 import { VeterinariosComponent } from './pages/panel/veterinarios/veterinarios.component';
 import { SuministrarTratamientosComponent } from './pages/panel/suministrar-tratamientos/suministrar-tratamientos.component';
+import { TiendaComponent } from './pages/tienda/tienda.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'historial-medico/:id', component: HistorialMedicoComponent, canActivate: [AuthGuard] },
   { path: 'suministrar-tratamiento', component: SuministrarTratamientosComponent, canActivate: [AuthGuard] },
   { path: 'calculadora-peso', component: CalculadoraPesoComponent },
+  { path: 'tienda', component: TiendaComponent },
   { path: '', component: LandingComponent },
   { path: '**', component: ErrorComponent }
 ];
