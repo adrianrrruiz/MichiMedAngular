@@ -87,7 +87,7 @@
 
   <section id="contact-email" class="text-center">
     <h2>¿Preguntas sobre los servicios que ofrecemos?</h2>
-    <p>Contáctanos en <strong>info@michimed.com</strong></p>
+    <p>Contáctanos en <strong>info&#64;michimed.com</strong></p>
     <button class="btn-2">Envíanos un Correo</button>
   </section>
 
@@ -151,7 +151,10 @@
     class="px-6 py-10 text-center border-solid border-[var(--color-1)] rounded-3xl w-full mt-10 mb-12"
   >
     <h1 class="text-[var(--color-1)] text-3xl font-bold mb-8">Contáctanos</h1>
-    <form class="space-y-6 max-w-4xl m-auto justify-self-center">
+    <form
+      (ngSubmit)="onSubmit()"
+      class="space-y-6 max-w-4xl m-auto justify-self-center"
+    >
       <div>
         <label
           class="block text-left text-lg font-semibold text-[var(--color-1)] mb-2"
@@ -164,6 +167,8 @@
           placeholder="Tu nombre"
           required
           class="w-full px-4 py-3 border border-[var(--color-1)] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          [(ngModel)]="formData.nombre"
+          name="name"
         />
       </div>
       <div>
@@ -178,6 +183,8 @@
           placeholder="Tu correo electrónico"
           required
           class="w-full px-4 py-3 border border-[var(--color-1)] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          [(ngModel)]="formData.email"
+          name="email"
         />
       </div>
       <div>
@@ -192,6 +199,8 @@
           placeholder="Asunto"
           required
           class="w-full px-4 py-3 border border-[var(--color-1)] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          [(ngModel)]="formData.asunto"
+          name="subject"
         />
       </div>
       <div>
@@ -205,6 +214,8 @@
           placeholder="Escribe tu mensaje aquí..."
           required
           class="w-full h-40 px-4 py-3 border border-[var(--color-1)] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
+          [(ngModel)]="formData.mensaje"
+          name="message"
         ></textarea>
       </div>
       <button

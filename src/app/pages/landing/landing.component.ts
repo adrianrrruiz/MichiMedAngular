@@ -4,12 +4,13 @@ import { Mascota } from '../../model/mascota';
 import { MessageService } from 'primeng/api';
 import { TratamientoService } from 'src/app/services/tratamiento.service';
 import { HistorialMedicoDTO } from 'src/app/model/historial-medico-dto';
+import { LandingService } from 'src/app/services/landing.service';
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css'],
-  providers: [MessageService]
+  providers: [MessageService],
 })
 export class LandingComponent {
   findMascotasDialog: boolean = false;
@@ -20,8 +21,19 @@ export class LandingComponent {
   clientes: any[] = [];
   tratamientos: HistorialMedicoDTO[] = [];
 
-  constructor(private clienteService: ClienteService, private messageService: MessageService, private tratamientoService: TratamientoService) {
-  }
+  formData = {
+    nombre: '',
+    email: '',
+    asunto: '',
+    mensaje: '',
+  };
+
+  constructor(
+    private clienteService: ClienteService,
+    private messageService: MessageService,
+    private tratamientoService: TratamientoService,
+    private emailService: LandingService
+  ) {}
 
   getSeverity(status: string): string {
     // Retorna la severidad del estado del tratamiento
@@ -40,7 +52,11 @@ export class LandingComponent {
     const cedulaTrimmed = this.cedula.trim();
 
     if (!cedulaTrimmed) {
-      this.messageService.add({ severity: 'warn', summary: 'Advertencia', detail: 'Por favor ingresa una cédula válida' });
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Advertencia',
+        detail: 'Por favor ingresa una cédula válida',
+      });
       return;
     }
 
@@ -51,18 +67,30 @@ export class LandingComponent {
             if (clienteMascotas.length > 0) {
               this.mascotas = clienteMascotas;
             } else {
-              this.messageService.add({ severity: 'info', summary: 'Sin mascotas', detail: 'No se encontraron mascotas para esta cédula.' });
+              this.messageService.add({
+                severity: 'info',
+                summary: 'Sin mascotas',
+                detail: 'No se encontraron mascotas para esta cédula.',
+              });
             }
           },
           (error) => {
             console.error('Error al obtener mascotas:', error);
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al obtener las mascotas del cliente' });
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Error al obtener las mascotas del cliente',
+            });
           }
         );
       },
       (error) => {
         console.error('Error al obtener cliente:', error);
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se encontró un cliente con la cédula ingresada' });
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'No se encontró un cliente con la cédula ingresada',
+        });
       }
     );
   }
@@ -71,7 +99,7 @@ export class LandingComponent {
     this.findMascotasDialog = true;
   }
 
-  showTratamientosMascotaDialog(){
+  showTratamientosMascotaDialog() {
     this.findMascotasDialog = false;
     this.viewTratamientosMascotaDialog = true;
   }
@@ -79,21 +107,29 @@ export class LandingComponent {
   verTratamientos(idMascota: number) {
     // Obtiene y muestra los tratamientos de una mascota
     this.tratamientoService
-        .getHistorialMedicoByMascotaId(idMascota)
-        .subscribe((tratamientos) => {
-          if(tratamientos.length === 0){
-            this.messageService.add({ severity: 'info', summary: 'Información', detail: 'No se encontraron tratamientos para la mascota seleccionada', life: 3000 });
-          }else{
-            this.tratamientos = tratamientos;
-            this.showTratamientosMascotaDialog();
-          }
-        });
+      .getHistorialMedicoByMascotaId(idMascota)
+      .subscribe((tratamientos) => {
+        if (tratamientos.length === 0) {
+          this.messageService.add({
+            severity: 'info',
+            summary: 'Información',
+            detail:
+              'No se encontraron tratamientos para la mascota seleccionada',
+            life: 3000,
+          });
+        } else {
+          this.tratamientos = tratamientos;
+          this.showTratamientosMascotaDialog();
+        }
+      });
   }
 
   ngAfterViewInit() {
     // Inicializa el carrusel
     const carousel = document.querySelector('.carousel') as HTMLElement;
-    const slides = document.querySelectorAll('.slide') as NodeListOf<HTMLElement>;
+    const slides = document.querySelectorAll(
+      '.slide'
+    ) as NodeListOf<HTMLElement>;
     let currentSlide = 0;
 
     function showSlide(n: number) {
@@ -122,5 +158,40 @@ export class LandingComponent {
         window.open('/tienda', '_blank');
         break;
     }
+  }
+
+  onSubmit() {
+    this.emailService.sendEmail(this.formData).subscribe(
+      (response: any) => {
+        // Verifica si la respuesta contiene 'success: true'
+        if (response && response.success) {
+          console.log('Correo enviado:', response);
+          this.messageService.add({
+            severity: 'success',
+            summary: '¡Éxito!',
+            detail: 'Correo enviado con éxito',
+            life: 3000,
+          });
+          this.formData = { nombre: '', email: '', asunto: '', mensaje: '' };
+        } else {
+          console.error('Error desde el servidor:', response?.message || 'Desconocido');
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Hubo un error al enviar el correo. Intenta nuevamente.',
+            life: 3000,
+          });
+        }
+      },
+      (error) => {
+        console.error('Error enviando correo:', error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Hubo un error al enviar el correo. Intenta nuevamente.',
+          life: 3000,
+        });
+      }
+    );
   }
 }
