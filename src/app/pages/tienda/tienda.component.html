@@ -1,0 +1,67 @@
+<app-header></app-header>
+
+<section id="hero-tienda">
+  <div class="overlay"></div>
+  <div class="carousel">
+    <div
+      class="slide"
+      style="background-image: url('../assets/img/tienda_banner1.jpg')"
+    ></div>
+    <div
+      class="slide"
+      style="background-image: url('../assets/img/tienda_banner2.jpg')"
+    ></div>
+  </div>
+  <div class="content">
+    <h1>Bienvenido a la Tienda para Gatos de MichiMed</h1>
+    <p>
+      <mark>Encuentra productos especialmente seleccionados para tu gato</mark>
+    </p>
+    <button class="btn-1" (click)="verCategorias()">Explorar Categorías</button>
+  </div>
+</section>
+
+<main>
+  <section id="categorias-productos">
+    <h2>Categorías de Productos</h2>
+    <div class="service-grid">
+      <div
+        class="service-item cursor-pointer"
+        *ngFor="let categoria of categorias"
+        (click)="filtrarCategoria(categoria)"
+      >
+        <i class="pi pi-tag text-4xl"></i>
+        <h3>{{ categoria.nombre }}</h3>
+        <p>{{ categoria.descripcion }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="productos-lista">
+    <h2>Productos Destacados</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div
+        *ngFor="let producto of productos"
+        class="producto-item bg-gray-100 p-6 rounded-lg shadow-md flex flex-col items-center text-center"
+      >
+        <img
+          [src]="producto.imagen"
+          alt="producto"
+          class="w-40 h-40 mb-4 object-cover rounded-lg"
+        />
+        <h3 class="text-lg font-semibold mb-2">{{ producto.nombre }}</h3>
+        <p class="text-gray-600">{{ producto.descripcion }}</p>
+        <p class="text-xl font-bold mt-2">
+          {{ producto.precio | currency : "COP" : "symbol" : "1.0-0" }}
+        </p>
+        <button class="btn-2 mt-4" (click)="agregarAlCarrito(producto)">
+          Agregar al Carrito
+        </button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<app-footer></app-footer>
+
+<p-toast></p-toast>

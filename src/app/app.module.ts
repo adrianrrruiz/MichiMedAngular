@@ -52,6 +52,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { TimelineModule } from 'primeng/timeline';
 import { CardModule } from 'primeng/card';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { TiendaComponent } from './pages/tienda/tienda.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { PanelMenuModule } from 'primeng/panelmenu';
     ProfitComponent,
     LoaderComponent,
     VeterinariosDsComponent,
-    CalculadoraPesoComponent
+    CalculadoraPesoComponent,
+    TiendaComponent
   ],
   imports: [
     BrowserModule,
