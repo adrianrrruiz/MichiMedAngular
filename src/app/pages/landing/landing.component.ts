@@ -5,6 +5,8 @@ import { MessageService } from 'primeng/api';
 import { TratamientoService } from 'src/app/services/tratamiento.service';
 import { HistorialMedicoDTO } from 'src/app/model/historial-medico-dto';
 import { LandingService } from 'src/app/services/landing.service';
+import { ChatgptService } from 'src/app/services/chatgpt.service';
+import { Cliente } from 'src/app/model/cliente';
 
 @Component({
   selector: 'app-landing',
@@ -15,11 +17,16 @@ import { LandingService } from 'src/app/services/landing.service';
 export class LandingComponent {
   findMascotasDialog: boolean = false;
   viewTratamientosMascotaDialog: boolean = false;
-  selectedMascota: Mascota | null = null;
   cedula: string = '';
   mascotas: Mascota[] = [];
   clientes: any[] = [];
   tratamientos: HistorialMedicoDTO[] = [];
+
+  // Para la recomendación
+  recomendacionDialog: boolean = false;
+  cliente!: Cliente;
+  recomendacion: string = '';
+  selectedMascota: Mascota | null = null;
 
   formData = {
     nombre: '',
@@ -32,7 +39,8 @@ export class LandingComponent {
     private clienteService: ClienteService,
     private messageService: MessageService,
     private tratamientoService: TratamientoService,
-    private emailService: LandingService
+    private emailService: LandingService,
+    private chatgptService: ChatgptService
   ) {}
 
   getSeverity(status: string): string {
@@ -43,7 +51,7 @@ export class LandingComponent {
       case 'Tratado':
         return 'success';
       default:
-        return 'warning';
+        return 'info';
     }
   }
 
@@ -62,6 +70,7 @@ export class LandingComponent {
 
     this.clienteService.getClienteByCedula(cedulaTrimmed).subscribe(
       (cliente) => {
+        this.cliente = cliente;
         this.clienteService.getClienteMascotas(cliente.id!).subscribe(
           (clienteMascotas: Mascota[]) => {
             if (clienteMascotas.length > 0) {
@@ -99,11 +108,6 @@ export class LandingComponent {
     this.findMascotasDialog = true;
   }
 
-  showTratamientosMascotaDialog() {
-    this.findMascotasDialog = false;
-    this.viewTratamientosMascotaDialog = true;
-  }
-
   verTratamientos(idMascota: number) {
     // Obtiene y muestra los tratamientos de una mascota
     this.tratamientoService
@@ -119,9 +123,28 @@ export class LandingComponent {
           });
         } else {
           this.tratamientos = tratamientos;
-          this.showTratamientosMascotaDialog();
+          this.viewTratamientosMascotaDialog = true;
         }
       });
+  }
+
+  consultarRecomendacion(mascota: Mascota){
+    const message = `Mi nombre es ${this.cliente.nombre} y mi gatito se llama ${mascota.nombre}, tiene ${mascota.edad} años, pesa ${mascota.peso} kg y es de raza ${mascota.raza}`;
+    this.chatgptService.getRecomendacion(message).subscribe(
+      (response: any) => {
+          this.selectedMascota = mascota;
+          this.recomendacion = response;
+          this.recomendacionDialog = true;
+      },
+      (error) => {
+        console.error('Error obteniendo recomendación:', error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Hubo un error al obtener la recomendación',
+          life: 3000,
+        });
+    });
   }
 
   ngAfterViewInit() {

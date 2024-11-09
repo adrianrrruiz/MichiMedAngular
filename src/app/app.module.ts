@@ -53,6 +53,7 @@ import { TimelineModule } from 'primeng/timeline';
 import { CardModule } from 'primeng/card';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { TiendaComponent } from './pages/tienda/tienda.component';
+import { FormatoRecomendacionPipe } from './pipes/formato-recomendacion.pipe';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { TiendaComponent } from './pages/tienda/tienda.component';
     LoaderComponent,
     VeterinariosDsComponent,
     CalculadoraPesoComponent,
-    TiendaComponent
+    TiendaComponent,
+    FormatoRecomendacionPipe
   ],
   imports: [
     BrowserModule,

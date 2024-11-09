@@ -298,7 +298,10 @@
   </div>
 
   <!-- Mostrar mascotas encontradas -->
-  <div *ngIf="mascotas.length > 0" class="flex flex-wrap justify-center gap-4">
+  <div
+    *ngIf="mascotas.length > 0"
+    class="flex flex-wrap justify-center gap-4 mt-3"
+  >
     <p-card
       *ngFor="let mascota of mascotas"
       [header]="mascota.nombre"
@@ -314,6 +317,12 @@
       </div>
       <ul class="data list-none p-0 text-center">
         <li class="mb-2">
+          <p-tag
+            [value]="mascota.estado"
+            [severity]="getSeverity(mascota.estado)"
+          ></p-tag>
+        </li>
+        <li class="mb-2">
           <strong>Edad: </strong><span>{{ mascota.edad }} años</span>
         </li>
         <li class="mb-2">
@@ -323,15 +332,45 @@
           <strong>Peso: </strong><span>{{ mascota.peso }} kg</span>
         </li>
       </ul>
-      <div class="flex justify-center">
+      <div class="flex justify-center flex-col items-center gap-2">
         <p-button
           label="Ver tratamientos"
+          [icon]="'pi pi-history'"
           [rounded]="true"
           severity="secondary"
           (click)="verTratamientos(mascota.id!)"
         ></p-button>
+        <p-button
+          label="Recomendaciones"
+          [icon]="'pi pi-info-circle'"
+          [rounded]="true"
+          severity="secondary"
+          (click)="consultarRecomendacion(mascota)"
+        ></p-button>
       </div>
     </p-card>
+  </div>
+</p-dialog>
+
+<!-- Dialog para ver recomendación en mascota -->
+<p-dialog
+  [header]="'Recomendaciones para ' + selectedMascota?.nombre"
+  [(visible)]="recomendacionDialog"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [modal]="true"
+>
+  <div class="flex flex-column gap-2">
+    <div class="flex justify-center">
+      <img
+        class="object-cover rounded-full shadow-2 mb-4"
+        [alt]="selectedMascota?.nombre"
+        [src]="selectedMascota?.foto"
+        width="200"
+      />
+    </div>
+    <h3>{{ selectedMascota?.nombre }}</h3>
+    <div [innerHTML]="recomendacion | formatoRecomendacion"></div>
   </div>
 </p-dialog>
 
@@ -340,6 +379,7 @@
   header="Historial Médico"
   [(visible)]="viewTratamientosMascotaDialog"
   [style]="{ width: '50vw' }"
+  [draggable]="false"
   [modal]="true"
 >
   <!-- Mostrar tratamientos encontrados -->
