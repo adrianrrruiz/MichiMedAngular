@@ -1,0 +1,4 @@
+#hero-section {
+  background: radial-gradient(circle at center, var(--color-1), var(--color-2));
+  transition: background-position 0.1s;
+}

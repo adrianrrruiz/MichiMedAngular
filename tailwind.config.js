@@ -3,7 +3,14 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'nunito': ['Nunito', 'sans-serif'],
+        'sour-gummy': ['Sour Gummy', 'cursive'],
+        'sarabun': ['Sarabun', 'sans-serif'],
+        'Host+Grotesk': ['Host Grotesk', 'sans-serif'],
+      }
+    }
   },
   plugins: [],
   corePlugins: {

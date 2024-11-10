@@ -6,73 +6,6 @@ main {
   padding-inline: 5%;
 }
 
-/* HERO */
-#hero {
-  position: relative;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0 5%;
-  overflow: hidden;
-  color: var(--white);
-}
-
-#hero .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-#hero .carousel {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  z-index: 0;
-  transition: transform 0.5s ease-in-out;
-}
-
-#hero .slide {
-  min-width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-}
-
-#hero .content {
-  position: relative;
-  z-index: 2;
-}
-
-#hero .content h1 { color: white; }
-
-#hero h1, #hero p, #hero button {
-  position: relative;
-  z-index: 2;
-}
-
-#hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-mark {
-  background-color: var(--color-1);
-  color: var(--white);
-  padding: 0.25rem;
-  border-radius: 0.5rem;
-}
-
-.content button {margin-top: 1.5rem;}
-
 /* SERVICES */
 
 .service-grid {
@@ -188,7 +121,4 @@ mark {
     max-width: 60%;
   }
 }
-
-
-
 

@@ -54,6 +54,7 @@ import { CardModule } from 'primeng/card';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { TiendaComponent } from './pages/tienda/tienda.component';
 import { FormatoRecomendacionPipe } from './pipes/formato-recomendacion.pipe';
+import { HeroComponent } from './components/landing/hero/hero.component';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { FormatoRecomendacionPipe } from './pipes/formato-recomendacion.pipe';
     VeterinariosDsComponent,
     CalculadoraPesoComponent,
     TiendaComponent,
-    FormatoRecomendacionPipe
+    FormatoRecomendacionPipe,
+    HeroComponent
   ],
   imports: [
     BrowserModule,

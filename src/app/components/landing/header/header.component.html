@@ -1,54 +1,108 @@
-<header class="sticky top-0 p-3 bg-[var(--color-1)] z-50">
-  <nav class="flex justify-between items-center">
-    <!-- Logo -->
-    <div class="flex items-center">
+<header class="sticky top-0 px-4 py-3 bg-white shadow-md z-50">
+  <nav class="flex justify-between font-nunito items-center">
+    <!-- Logo y nombre -->
+    <div class="flex items-center space-x-2">
       <img
         class="h-10 hover:cursor-pointer"
-        src="../assets/img/michimedpng.png"
+        src="../assets/img/MichimedP1.png"
         alt="MichiMed Logo"
       />
     </div>
 
+    <!-- Menú de Navegación para Pantallas Grandes -->
+    <ul
+      class="hidden md:flex items-center justify-center space-x-6 text-[var(--gray)] list-none my-0 mx-3 p-0"
+    >
+      <li class="hover:transform hover:-translate-y-1 transition">
+        <a
+          class="text-[var(--gray)] hover:text-[var(--color-1)] no-underline"
+          href="#hero"
+          >Inicio</a
+        >
+      </li>
+      <li class="hover:transform hover:-translate-y-1 transition">
+        <a
+          class="text-[var(--gray)] hover:text-[var(--color-1)] no-underline"
+          href="#online-services"
+          >Servicios</a
+        >
+      </li>
+      <li class="hover:transform hover:-translate-y-1 transition">
+        <a
+          class="text-[var(--gray)] hover:text-[var(--color-1)] no-underline"
+          href="#contact-email"
+          >Sobre Nosotros</a
+        >
+      </li>
+      <li class="hover:transform hover:-translate-y-1 transition">
+        <a
+          class="text-[var(--gray)] hover:text-[var(--color-1)] no-underline"
+          href="#contact"
+          >Contacto</a
+        >
+      </li>
+      <li class="hover:transform hover:-translate-y-1 transition">
+        <a
+          class="text-[var(--gray)] hover:text-[var(--color-1)] no-underline"
+          href="#faq"
+          >FAQ</a
+        >
+      </li>
+    </ul>
+
+    <!-- Botón Iniciar sesión -->
+    <div class="hidden md:flex items-center space-x-4">
+      <span [pTooltip]="tooltipContent" class="font-bold text-[var(--color-2)]">
+        <i class="pi pi-phone mr-2"></i>+57 (312) 123-4567
+      </span>
+      <button
+        class="bg-[var(--transparent)] border-solid border-2 border-[var(--color-1)] text-[var(--color-1)] px-6 rounded-full hover:border-[var(--color-1)] hover:bg-[var(--color-2)] hover:text-[var(--white)] transition font-sarabun font-bold"
+      >
+        Iniciar sesión
+      </button>
+
+      <!-- Tooltip para el número de teléfono -->
+      <ng-template #tooltipContent>
+        <div class="flex align-items-center flex-col">
+          <img
+            src="https://static.vecteezy.com/system/resources/thumbnails/014/571/798/small_2x/emergency-siren-icon-hazard-warning-light-ambulance-route-alarm-png.png"
+            height="50"
+            class="mr-2"
+          />
+          <b class="text-center">Línea de emergencia</b>
+          <span class="text-center">
+            Esta es nuestra línea de emergencia. No dudes en llamarnos si tu
+            gato necesita atención inmediata.
+          </span>
+        </div>
+      </ng-template>
+    </div>
+
     <!-- Menú hamburguesa para pantallas pequeñas -->
     <button
-      class="btn-1 text-2xl md:hidden focus:outline-none"
+      class="text-2xl md:hidden focus:outline-none [var(--color-1)]"
       (click)="toggleMenu()"
       aria-label="Toggle Menu"
     >
       <i class="pi pi-bars"></i>
     </button>
-
-    <!-- Menú de Navegación en Pantallas Grandes -->
-    <ul
-      class="hidden md:flex items-center text-center list-none mr-5 mb-0 space-x-8"
-    >
-      <li>
-        <a class="no-underline text-[var(--white)]" href="#hero">Inicio</a>
-      </li>
-      <li>
-        <a class="no-underline text-[var(--white)]" href="#online-services"
-          >Servicios</a
-        >
-      </li>
-      <li>
-        <a class="no-underline text-[var(--white)]" href="#contact-email"
-          >Correo Electrónico</a
-        >
-      </li>
-      <li>
-        <a class="no-underline text-[var(--white)]" href="#contact">Contacto</a>
-      </li>
-      <a routerLink="/sign-in">
-        <button id="logInButton" class="btn-1">Iniciar sesión</button>
-      </a>
-    </ul>
-
-    <!-- Menú desplegable de PrimeNG para pantallas pequeñas -->
-    <p-panelMenu
-      *ngIf="menuOpen"
-      [model]="menuItems"
-      class="md:hidden absolute top-16 right-5 w-64 bg-[var(--color-1)] rounded-lg shadow-lg text-white"
-    >
-    </p-panelMenu>
   </nav>
+
+  <!-- Menú desplegable para pantallas pequeñas -->
+  <div
+    *ngIf="menuOpen"
+    class="md:hidden mt-4 space-y-2 text-center text-[var(--gray)] font-nunito"
+  >
+    <a href="#hero" class="block text-[var(--gray)] no-underline">Inicio</a>
+    <a href="#online-services" class="block text-[var(--gray)] no-underline"
+      >Servicios</a
+    >
+    <a href="#contact-email" class="block text-[var(--gray)] no-underline"
+      >Sobre Nosotros</a
+    >
+    <a href="#contact" class="block text-[var(--gray)] no-underline"
+      >Contacto</a
+    >
+    <a href="#faq" class="block text-[var(--gray)] no-underline">FAQ</a>
+  </div>
 </header>

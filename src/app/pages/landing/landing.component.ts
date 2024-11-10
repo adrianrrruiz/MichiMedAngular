@@ -147,28 +147,6 @@ export class LandingComponent {
     });
   }
 
-  ngAfterViewInit() {
-    // Inicializa el carrusel
-    const carousel = document.querySelector('.carousel') as HTMLElement;
-    const slides = document.querySelectorAll(
-      '.slide'
-    ) as NodeListOf<HTMLElement>;
-    let currentSlide = 0;
-
-    function showSlide(n: number) {
-      currentSlide = (n + slides.length) % slides.length;
-      if (carousel) {
-        carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-      }
-    }
-
-    function nextSlide() {
-      showSlide(currentSlide + 1);
-    }
-
-    setInterval(nextSlide, 5000);
-  }
-
   openNewWindow(objective: string) {
     switch (objective) {
       case 'calculadora':
