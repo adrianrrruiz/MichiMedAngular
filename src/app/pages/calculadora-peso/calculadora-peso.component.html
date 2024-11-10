@@ -1,94 +1,122 @@
-<header class="p-3">
-  <nav class="flex justify-between items-center">
-    <a href="./">
+<div class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <app-header></app-header>
+
+  <!-- Main Content -->
+  <main
+    class="flex flex-col-reverse md:grid md:grid-cols-2 gap-8 items-center px-6 py-10 bg-gray-50 flex-grow"
+  >
+    <!-- Imagen Descriptiva -->
+    <figure class="w-full md:order-1 flex justify-center">
       <img
-        class="h-10 hover:cursor-pointer"
-        src="../assets/img/Michimed_Logo 1.png"
-        alt="MichiMed Logo"
+        class="object-contain w-full h-[50vh] md:h-[60vh] rounded-xl shadow-lg"
+        src="https://filiosfoods.com/wp-content/uploads/2023/09/Filios-Gato-Gatos-1024x998.png"
+        alt="Tabla para saber si mi gato está en sobrepeso"
       />
-    </a>
-    <i
-      class="bi bi-person-circle fs-1"
-      style="color: var(--text-secondary)"
-    ></i>
-  </nav>
-</header>
+    </figure>
 
-<main class="flex flex-col-reverse md:grid md:grid-cols-2 gap-10">
-  <figure class="justify-self-end">
-    <img
-      class="object-contain w-full h-[60vh] rounded-xl"
-      src="https://www.veterinariasanjuan.com.ar/wp-content/uploads/cuantos-kilos-es-obesidad-en-un-gato-2.webp"
-      alt="Tabla para saber si mi gato esta en sobrepeso"
-    />
-  </figure>
-  <div class="text-center self-center justify-self-start p-4">
-    <h1 class="mb-5 fw-bold text-3xl">
-      Calculadora del peso ideal para tu gatito 😺
-    </h1>
-    <form [formGroup]="pesoForm" (ngSubmit)="calcularPesoIdeal()">
-      <div class="mb-3">
-        <label for="categoria" class="form-label w-100 text-start"
-          >Categoría</label
-        >
-        <select
-          id="categoria"
-          formControlName="categoria"
-          class="form-select"
-          required
-        >
-          <option value="" disabled selected>
-            Selecciona la categoría de tu gatito
-          </option>
-          <option value="domestico">Gato doméstico, común</option>
-          <option value="himalayo">Gato himalayo</option>
-          <option value="persa">Gato persa</option>
-          <option value="siames">Gato siamés</option>
-          <option value="maine_coon">Gato maine coon</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <label for="sexo" class="form-label w-100 text-start">Sexo</label>
-        <select id="sexo" formControlName="sexo" class="form-select" required>
-          <option value="" disabled selected>
-            Selecciona el sexo de tu gatito
-          </option>
-          <option value="macho">Macho</option>
-          <option value="hembra">Hembra</option>
-        </select>
-      </div>
-      <div class="mb-4">
-        <label for="peso" class="form-label w-100 text-start"
-          >Peso actual (en kg)</label
-        >
-        <input
-          type="number"
-          id="peso"
-          formControlName="peso"
-          class="form-control"
-          placeholder="Ingresa el peso actual de tu gatito"
-          required
-        />
-      </div>
-      <button type="submit" class="btn-2 w-100">Calcular</button>
-    </form>
-  </div>
-</main>
-
-<footer class="text-center py-8">
-  <div class="mt-10">
-    <a class="no-underline w-5 h-5 text-[var(--text-terciary)]" href="#"
-      >Privacidad y políticas</a
+    <!-- Formulario de Calculadora -->
+    <div
+      class="bg-white p-6 md:p-8 rounded-xl shadow-lg w-full max-w-md mx-auto md:order-2"
     >
-    <a class="no-underline w-5 h-5 m-2 text-[var(--text-terciary)]" href="#"
-      >Términos y condiciones</a
-    >
-  </div>
-  <p class="mt-2 text-[var(--text-terciary)]">
-    &copy; 2024 MichiMed. Todos los derechos reservados.
-  </p>
-</footer>
+      <h1
+        class="text-2xl md:text-3xl font-bold text-[var(--color-2)] mb-6 text-center"
+      >
+        Calculadora de Peso Ideal para tu Gatito 😺
+      </h1>
+      <form
+        [formGroup]="pesoForm"
+        (ngSubmit)="calcularPesoIdeal()"
+        class="space-y-6"
+      >
+        <!-- Selección de Categoría -->
+        <div>
+          <label
+            for="categoria"
+            class="block text-left text-lg font-semibold text-[var(--color-2)] mb-2"
+            >Categoría</label
+          >
+          <select
+            id="categoria"
+            formControlName="categoria"
+            class="w-full px-4 py-3 border border-[var(--color-2)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-5)]"
+            required
+          >
+            <option value="" disabled selected>
+              Selecciona la categoría de tu gatito
+            </option>
+            <option value="domestico">Gato doméstico, común</option>
+            <option value="himalayo">Gato himalayo</option>
+            <option value="persa">Gato persa</option>
+            <option value="siames">Gato siamés</option>
+            <option value="maine_coon">Gato maine coon</option>
+          </select>
+        </div>
 
+        <!-- Selección de Sexo -->
+        <div>
+          <label
+            for="sexo"
+            class="block text-left text-lg font-semibold text-[var(--color-2)] mb-2"
+            >Sexo</label
+          >
+          <select
+            id="sexo"
+            formControlName="sexo"
+            class="w-full px-4 py-3 border border-[var(--color-2)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-5)]"
+            required
+          >
+            <option value="" disabled selected>
+              Selecciona el sexo de tu gatito
+            </option>
+            <option value="macho">Macho</option>
+            <option value="hembra">Hembra</option>
+          </select>
+        </div>
+
+        <!-- Campo de Peso Actual -->
+        <div>
+          <label
+            for="peso"
+            class="block text-left text-lg font-semibold text-[var(--color-2)] mb-2"
+            >Peso actual (en kg)</label
+          >
+          <input
+            type="number"
+            id="peso"
+            formControlName="peso"
+            class="w-full px-4 py-3 border border-[var(--color-2)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-5)]"
+            placeholder="Ingresa el peso actual de tu gatito"
+            required
+          />
+        </div>
+
+        <!-- Botón de Calcular -->
+        <button
+          type="submit"
+          class="w-full bg-[var(--color-2)] text-white py-3 rounded-lg shadow-lg hover:bg-[var(--color-5)] transition-transform transform hover:scale-105 font-semibold"
+        >
+          Calcular
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-8 bg-[var(--color-2)] text-[var(--color-3)]">
+    <div class="flex justify-center space-x-4 text-[var(--color-3)] mb-2">
+      <a href="#" class="no-underline text-[var(--white)] hover:underline"
+        >Términos de Uso</a
+      >
+      <a href="#" class="no-underline text-[var(--white)] hover:underline"
+        >Política de Privacidad</a
+      >
+    </div>
+    <p class="text-sm">&copy; 2024 MichiMed. Todos los derechos reservados.</p>
+  </footer>
+</div>
+
+<!-- Dialogo de Resultado -->
 <p-dialog
   header="Resultado del Peso Ideal"
   [(visible)]="visible"
@@ -97,11 +125,13 @@
   [resizable]="false"
 >
   <div *ngIf="mensajePeso" class="text-center">
-    <i
-      [class]="mensajePeso.icono"
-      [ngClass]="mensajePeso.color"
-      style="font-size: 2rem"
-    ></i>
-    <p class="m-4" [ngClass]="mensajePeso.color">{{ mensajePeso.texto }}</p>
+    <img
+      [src]="mensajePeso.gifUrl"
+      alt="Resultado GIF"
+      class="mx-auto w-44 h-44 mb-4"
+    />
+    <p class="m-4 text-lg" [ngClass]="mensajePeso.color">
+      {{ mensajePeso.texto }}
+    </p>
   </div>
 </p-dialog>

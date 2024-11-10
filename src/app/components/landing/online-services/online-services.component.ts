@@ -149,20 +149,6 @@ export class OnlineServicesComponent implements OnInit {
       });
   }
 
-  openNewWindow(objective: string) {
-    switch (objective) {
-      case 'calculadora':
-        window.open('/calculadora-peso', '_blank');
-        break;
-      case 'blog':
-        window.open('/blogs', '_blank');
-        break;
-      case 'tienda':
-        window.open('/tienda', '_blank');
-        break;
-    }
-  }
-
   getSeverity(status: string): string {
     // Retorna la severidad del estado del tratamiento
     switch (status) {
