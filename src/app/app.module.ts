@@ -32,6 +32,15 @@ import { VeterinariosDsComponent } from './components/veterinarios-ds/veterinari
 import { AuthInterceptor } from './helpers/auth.interceptor';
 import { AuthGuard } from './auth.guard';
 import { AdminGuard } from './admin.guard';
+import { TiendaComponent } from './pages/tienda/tienda.component';
+import { FormatoRecomendacionPipe } from './pipes/formato-recomendacion.pipe';
+import { HeroComponent } from './components/landing/hero/hero.component';
+import { OnlineServicesComponent } from './components/landing/online-services/online-services.component';
+import { GalleryGridComponent } from './components/landing/gallery-grid/gallery-grid.component';
+import { TestimoniosComponent } from './components/landing/testimonios/testimonios.component';
+import { FaqComponent } from './components/landing/faq/faq.component';
+import { ContactFormComponent } from './components/landing/contact-form/contact-form.component';
+import { DondeEncontrarnosComponent } from './components/landing/donde-encontrarnos/donde-encontrarnos.component';
 
 // PrimeNG Components
 import { TableModule } from 'primeng/table';
@@ -52,10 +61,6 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { TimelineModule } from 'primeng/timeline';
 import { CardModule } from 'primeng/card';
 import { PanelMenuModule } from 'primeng/panelmenu';
-import { TiendaComponent } from './pages/tienda/tienda.component';
-import { FormatoRecomendacionPipe } from './pipes/formato-recomendacion.pipe';
-import { HeroComponent } from './components/landing/hero/hero.component';
-import { OnlineServicesComponent } from './components/landing/online-services/online-services.component';
 
 
 @NgModule({
@@ -85,7 +90,12 @@ import { OnlineServicesComponent } from './components/landing/online-services/on
     TiendaComponent,
     FormatoRecomendacionPipe,
     HeroComponent,
-    OnlineServicesComponent
+    OnlineServicesComponent,
+    GalleryGridComponent,
+    TestimoniosComponent,
+    FaqComponent,
+    ContactFormComponent,
+    DondeEncontrarnosComponent
   ],
   imports: [
     BrowserModule,
