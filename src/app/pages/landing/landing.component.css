@@ -6,18 +6,6 @@ main {
   padding-inline: 5%;
 }
 
-/* SERVICES */
-
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajuste automático de columnas */
-  gap: 1rem; /* Espaciado entre las tarjetas */
-  width: 100%;
-  margin-top: 2rem;
-  padding: 1rem; /* Añadido padding para mejor separación */
-  margin-bottom: 70px;
-}
-
 .service-item {
   background-color: var(--color-2);
   padding: 1.5rem;
@@ -98,27 +86,5 @@ main {
   height: 400px;
   background-color: var(--color-3);
   border-radius: 40px;
-}
-
-#online-services {
-  text-align: center;
-}
-#online-services p{
-  margin-top: 27px;
-  margin-bottom: 20px;
-}
-
-#online-services h2{
-  font-size: 300%;
-  margin-top:  40px;
-}
-
-@media (min-width: 768px) {
-  #online-services{
-    text-align: left !important;
-  }
-  #online-services p{
-    max-width: 60%;
-  }
 }
 

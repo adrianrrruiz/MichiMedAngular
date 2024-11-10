@@ -1,0 +1,216 @@
+<section id="online-services" class="text-center py-12 px-4">
+  <!-- Título y Descripción Centrados -->
+  <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-2)] mb-4">
+    Bienvenido a Nuestros Servicios en Línea
+  </h2>
+  <p class="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto mb-8">
+    Descubre nuestra gama de servicios en línea diseñados para facilitar la
+    gestión de la salud de tu mascota. Desde el seguimiento del estado de
+    hospitalización hasta la consulta del historial médico y acceso a recursos
+    exclusivos para veterinarios.
+  </p>
+
+  <!-- Contenedor de Servicios e Imagen en 3 Columnas -->
+  <div
+    class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start"
+  >
+    <!-- Columna Izquierda: Dos Servicios -->
+    <div
+      class="space-y-6 left-cards transform -translate-x-full opacity-0 transition-all duration-1000 ease-out"
+    >
+      <div
+        (click)="showFindMascotasDialog()"
+        class="service-item flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md cursor-pointer hover:-translate-x-4 transition-transform duration-300"
+      >
+        <i class="pi pi-calendar text-3xl text-[var(--color-1)] mb-2"></i>
+        <h3 class="text-md font-semibold text-[var(--color-2)]">
+          Historial Médico
+        </h3>
+        <p class="text-sm text-[var(--text-secondary)]">
+          Consulta el historial médico de tu mascota en cualquier momento.
+        </p>
+      </div>
+      <div
+        (click)="openNewWindow('tienda')"
+        class="service-item flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md cursor-pointer hover:-translate-x-4 transition-transform duration-300"
+      >
+        <i class="pi pi-cart-plus text-3xl text-[var(--color-1)] mb-2"></i>
+        <h3 class="text-md font-semibold text-[var(--color-2)]">
+          Tienda Exclusiva para Gatitos
+        </h3>
+        <p class="text-sm text-[var(--text-secondary)]">
+          Descubre nuestros productos seleccionados para tu gato.
+        </p>
+      </div>
+    </div>
+
+    <!-- Columna Central: Imagen -->
+    <div class="flex h-full justify-center items-center">
+      <img
+        src="https://png.pngtree.com/png-vector/20230922/ourmid/pngtree-cute-siamese-cat-png-image_10146812.png"
+        alt="Imagen de Gato"
+        class="h-96 w-96"
+      />
+    </div>
+
+    <!-- Columna Derecha: Otros Dos Servicios -->
+    <div
+      class="space-y-6 right-cards transform translate-x-full opacity-0 transition-all duration-1000 ease-out"
+    >
+      <div
+        (click)="openNewWindow('blogs')"
+        class="service-item flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md cursor-pointer hover:translate-x-4 transition-transform duration-300"
+      >
+        <i class="pi pi-bookmark text-3xl text-[var(--color-1)] mb-2"></i>
+        <h3 class="text-md font-semibold text-[var(--color-2)]">
+          Recursos Educativos
+        </h3>
+        <p class="text-sm text-[var(--text-secondary)]">
+          Explora artículos y guías para el cuidado de tu mascota.
+        </p>
+      </div>
+      <div
+        (click)="openNewWindow('calculadora')"
+        class="service-item flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md cursor-pointer hover:translate-x-4 transition-transform duration-300"
+      >
+        <i class="pi pi-calculator text-3xl text-[var(--color-1)] mb-2"></i>
+        <h3 class="text-md font-semibold text-[var(--color-2)]">
+          Calculadora de Peso Ideal
+        </h3>
+        <p class="text-sm text-[var(--text-secondary)]">
+          Asegúrate de que tu mascota esté en su peso óptimo.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Dialog para buscar mascotas -->
+<p-dialog
+  header="Buscar mis mascotas"
+  [(visible)]="findMascotasDialog"
+  [modal]="true"
+>
+  <div class="flex flex-column gap-2">
+    <label for="cedula">Ingrese su cédula</label>
+    <input pInputText class="primeng-input" id="cedula" [(ngModel)]="cedula" />
+    <button id="btnBuscarMascotas" class="btn-2" (click)="buscarMascota()">
+      Buscar
+    </button>
+  </div>
+
+  <!-- Mostrar mascotas encontradas -->
+  <div
+    *ngIf="mascotas.length > 0"
+    class="flex flex-wrap justify-center gap-4 mt-3"
+  >
+    <p-card
+      *ngFor="let mascota of mascotas"
+      [header]="mascota.nombre"
+      [style]="{ width: '360px' }"
+    >
+      <div class="flex justify-center">
+        <img
+          class="object-cover rounded-full shadow-2 mb-4"
+          [alt]="mascota.nombre"
+          [src]="mascota.foto"
+          width="200"
+        />
+      </div>
+      <ul class="data list-none p-0 text-center">
+        <li class="mb-2">
+          <p-tag
+            [value]="mascota.estado"
+            [severity]="getSeverity(mascota.estado)"
+          ></p-tag>
+        </li>
+        <li class="mb-2">
+          <strong>Edad: </strong><span>{{ mascota.edad }} años</span>
+        </li>
+        <li class="mb-2">
+          <strong>Raza: </strong><span>{{ mascota.raza }}</span>
+        </li>
+        <li class="mb-2">
+          <strong>Peso: </strong><span>{{ mascota.peso }} kg</span>
+        </li>
+      </ul>
+      <div class="flex justify-center flex-col items-center gap-2">
+        <p-button
+          label="Ver tratamientos"
+          [icon]="'pi pi-history'"
+          [rounded]="true"
+          severity="secondary"
+          (click)="verTratamientos(mascota.id!)"
+        ></p-button>
+        <p-button
+          label="Recomendaciones"
+          [icon]="'pi pi-info-circle'"
+          [rounded]="true"
+          severity="secondary"
+          (click)="consultarRecomendacion(mascota)"
+        ></p-button>
+      </div>
+    </p-card>
+  </div>
+</p-dialog>
+
+<!-- Dialog para ver recomendación en mascota -->
+<p-dialog
+  [header]="'Recomendaciones para ' + selectedMascota?.nombre"
+  [(visible)]="recomendacionDialog"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [modal]="true"
+>
+  <div class="flex flex-column gap-2">
+    <div class="flex justify-center">
+      <img
+        class="object-cover rounded-full shadow-2 mb-4"
+        [alt]="selectedMascota?.nombre"
+        [src]="selectedMascota?.foto"
+        width="200"
+      />
+    </div>
+    <h3>{{ selectedMascota?.nombre }}</h3>
+    <div [innerHTML]="recomendacion | formatoRecomendacion"></div>
+  </div>
+</p-dialog>
+
+<!-- Dialog para ver tratamientos -->
+<p-dialog
+  header="Historial Médico"
+  [(visible)]="viewTratamientosMascotaDialog"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [modal]="true"
+>
+  <!-- Mostrar tratamientos encontrados -->
+  <div class="flex flex-wrap justify-center gap-4">
+    <p-card
+      *ngFor="let tratamiento of tratamientos"
+      [header]="tratamiento.fecha"
+      [subheader]="'Tratado por: ' + tratamiento.nombreVeterinario"
+      [style]="{ width: '360px' }"
+    >
+      <div class="flex justify-center">
+        <img
+          class="object-cover rounded-full shadow-2 mb-4"
+          [alt]="tratamiento.nombreVeterinario"
+          [src]="tratamiento.urlFotoVeterinario"
+          width="200"
+        />
+      </div>
+      <h4>Drogas asignada</h4>
+      <p>
+        {{
+          tratamiento.nombreDroga
+            ? tratamiento.nombreDroga
+            : "No tiene droga asignada"
+        }}
+      </p>
+    </p-card>
+  </div>
+</p-dialog>
+
+<!-- Mensajes de notificación -->
+<p-toast></p-toast>

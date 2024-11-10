@@ -55,6 +55,7 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { TiendaComponent } from './pages/tienda/tienda.component';
 import { FormatoRecomendacionPipe } from './pipes/formato-recomendacion.pipe';
 import { HeroComponent } from './components/landing/hero/hero.component';
+import { OnlineServicesComponent } from './components/landing/online-services/online-services.component';
 
 
 @NgModule({
@@ -83,7 +84,8 @@ import { HeroComponent } from './components/landing/hero/hero.component';
     CalculadoraPesoComponent,
     TiendaComponent,
     FormatoRecomendacionPipe,
-    HeroComponent
+    HeroComponent,
+    OnlineServicesComponent
   ],
   imports: [
     BrowserModule,
