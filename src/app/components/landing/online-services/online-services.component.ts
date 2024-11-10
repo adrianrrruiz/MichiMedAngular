@@ -76,6 +76,7 @@ export class OnlineServicesComponent implements OnInit {
             if (clienteMascotas.length > 0) {
               this.mascotas = clienteMascotas;
             } else {
+              this.mascotas = [];
               this.messageService.add({
                 severity: 'info',
                 summary: 'Sin mascotas',
@@ -84,6 +85,7 @@ export class OnlineServicesComponent implements OnInit {
             }
           },
           (error) => {
+            this.mascotas = [];
             console.error('Error al obtener mascotas:', error);
             this.messageService.add({
               severity: 'error',
@@ -94,6 +96,7 @@ export class OnlineServicesComponent implements OnInit {
         );
       },
       (error) => {
+        this.mascotas = [];
         console.error('Error al obtener cliente:', error);
         this.messageService.add({
           severity: 'error',
@@ -106,11 +109,13 @@ export class OnlineServicesComponent implements OnInit {
 
   consultarRecomendacion(mascota: Mascota){
     const message = `Mi nombre es ${this.cliente.nombre} y mi gatito se llama ${mascota.nombre}, tiene ${mascota.edad} años, pesa ${mascota.peso} kg y es de raza ${mascota.raza}`;
+    this.recomendacionDialog = true;
+    this.recomendacion = '';
+    this.selectedMascota = null;
     this.chatgptService.getRecomendacion(message).subscribe(
       (response: any) => {
           this.selectedMascota = mascota;
           this.recomendacion = response;
-          this.recomendacionDialog = true;
       },
       (error) => {
         console.error('Error obteniendo recomendación:', error);
@@ -120,6 +125,7 @@ export class OnlineServicesComponent implements OnInit {
           detail: 'Hubo un error al obtener la recomendación',
           life: 3000,
         });
+        this.recomendacionDialog = false;
     });
   }
 

@@ -41,6 +41,7 @@ import { TestimoniosComponent } from './components/landing/testimonios/testimoni
 import { FaqComponent } from './components/landing/faq/faq.component';
 import { ContactFormComponent } from './components/landing/contact-form/contact-form.component';
 import { DondeEncontrarnosComponent } from './components/landing/donde-encontrarnos/donde-encontrarnos.component';
+import { Btn1Component } from './components/landing/btn1/btn1.component';
 
 // PrimeNG Components
 import { TableModule } from 'primeng/table';
@@ -61,7 +62,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { TimelineModule } from 'primeng/timeline';
 import { CardModule } from 'primeng/card';
 import { PanelMenuModule } from 'primeng/panelmenu';
-
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { PanelMenuModule } from 'primeng/panelmenu';
     TestimoniosComponent,
     FaqComponent,
     ContactFormComponent,
-    DondeEncontrarnosComponent
+    DondeEncontrarnosComponent,
+    Btn1Component
   ],
   imports: [
     BrowserModule,
@@ -121,7 +123,8 @@ import { PanelMenuModule } from 'primeng/panelmenu';
     MultiSelectModule,
     TimelineModule,
     CardModule,
-    PanelMenuModule
+    PanelMenuModule,
+    ProgressSpinnerModule
   ],
   providers: [
     {

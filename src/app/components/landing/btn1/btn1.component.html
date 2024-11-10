@@ -1,0 +1,18 @@
+<button
+  (click)="handleClick()"
+  class="flex w-full justify-center items-center bg-[var(--color-1)] text-white hover:bg-[var(--color-2)] px-6 py-3 rounded-full transition font-sarabun font-semibold"
+>
+  <!-- Ícono (opcional) -->
+  <ng-container *ngIf="icon">
+    <i *ngIf="icon.includes('pi ')" [class]="icon" class="mr-2"></i>
+    <img
+      *ngIf="!icon.includes('pi ')"
+      [src]="icon"
+      alt="Icon"
+      class="h-5 w-5 mr-2"
+    />
+  </ng-container>
+
+  <!-- Texto del botón -->
+  {{ label }}
+</button>
