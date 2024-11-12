@@ -69,7 +69,7 @@ import { StepsModule } from 'primeng/steps';  // Asegúrate de importar StepsMod
 import { AuthInterceptor } from './helpers/auth.interceptor';
 import { AuthGuard } from './auth.guard';
 import { AdminGuard } from './admin.guard';
-import { ConfirmarAdopcionComponent } from './components/confirmar-adopcion/confirmar-adopcion.component';
+import { ConfirmarAdopcionComponent } from './pages/confirmar-adopcion/confirmar-adopcion.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { AgendarCitaComponent } from './pages/agendar-cita/agendar-cita.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';

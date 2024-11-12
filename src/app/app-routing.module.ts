@@ -15,7 +15,7 @@ import { CalculadoraPesoComponent } from './pages/calculadora-peso/calculadora-p
 import { VeterinariosComponent } from './pages/panel/veterinarios/veterinarios.component';
 import { SuministrarTratamientosComponent } from './pages/panel/suministrar-tratamientos/suministrar-tratamientos.component';
 import { TiendaComponent } from './pages/tienda/tienda.component';
-import { ConfirmarAdopcionComponent } from './components/confirmar-adopcion/confirmar-adopcion.component';
+import { ConfirmarAdopcionComponent } from './pages/confirmar-adopcion/confirmar-adopcion.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { AgendarCitaComponent } from './pages/agendar-cita/agendar-cita.component';
 import { GetTokenComponent } from './pages/get-token/get-token.component';
