@@ -29,6 +29,9 @@
     --transparent: transparent;
     --gray: #757575;
     --color-gainsboro-200: #e2dad6;
+    --color-pastel-green: #81C784; 
+    --color-pastel-red: #E57373;   
+    
 }
 
 * {
@@ -109,3 +112,15 @@ button {
   background-color: var(--input-color);
 }
 
+.pastel-confirm-button {
+  background-color: var(--color-pastel-green) !important;  
+  color: var(--white) !important;             
+  border: none !important;
+}
+
+/* Botón de rechazo con rojo pastel */
+.pastel-cancel-button {
+  background-color: var(--color-pastel-red) !important;   
+  color: var(--white) !important;         
+  border: none !important;
+}

@@ -1,0 +1,79 @@
+/* Estilos generales para los campos de entrada */
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.input-field {
+    width: 100%;
+    padding: 0.85em;
+    margin-top: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1.1rem;
+}
+
+/* Estilo personalizado para los pasos */
+.custom-steps .p-steps-item {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    padding: 1rem;
+}
+
+.custom-steps .p-steps-title {
+    margin-top: 0.8em;
+    font-size: 1rem;
+}
+
+/* Contenedor del contenido de cada paso */
+.step-content {
+    margin-top: 2rem;
+    padding: 2.5rem;
+    background-color: #f7f7f7;
+    border-radius: 12px;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Botones en el pie de diálogo */
+.footer-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.2rem;
+    margin-top: 2rem;
+}
+
+.footer-buttons .p-button {
+    padding: 0.85rem 1.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+}
+
+/* Botón personalizado */
+.p-button-secondary {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.p-button-secondary:hover {
+    background-color: #ccc;
+}
+
+.p-button-primary {
+    background-color: #5cb85c;
+    color: #fff;
+}
+
+.p-button-primary:hover {
+    background-color: #4cae4c;
+}
+
+/* Énfasis para el botón Completar */
+.p-button-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.p-button-success:hover {
+    background-color: #218838;
+}

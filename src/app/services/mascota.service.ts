@@ -59,4 +59,27 @@ export class MascotaService {
   deleteMascota(id: number): Observable<any> {
     return this.http.delete<any>('http://localhost:8090/mascotas/delete/' + id);
   }
+
+  iniciarAdopcion(id: number): Observable<void> {
+    return this.http.put<void>(`http://localhost:8090/mascotas/${id}/iniciarAdopcion`, {})
+      .pipe(
+        catchError((error) => {
+          console.error('Error al iniciar adopción:', error);
+          return throwError(error);
+        })
+      );
+  }
+ 
+getMascotasPendientesAdopcion(): Observable<Mascota[]> {
+  return this.http.get<Mascota[]>('http://localhost:8090/mascotas/pendientesAdopcion');
+}
+
+confirmarAdopcion(id: number): Observable<void> {
+  return this.http.put<void>(`http://localhost:8090/mascotas/${id}/confirmarAdopcion`, {});
+}
+
+rechazarAdopcion(id: number): Observable<void> {
+  return this.http.put<void>(`http://localhost:8090/mascotas/${id}/rechazarAdopcion`, {});
+}
+
 }

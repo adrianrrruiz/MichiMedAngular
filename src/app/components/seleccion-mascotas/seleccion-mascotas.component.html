@@ -1,0 +1,81 @@
+<div class="search-container">
+  <div class="dropdown-container">
+    <p-dropdown 
+      [options]="gatosDisponibles" 
+      [(ngModel)]="selectedGato" 
+      placeholder="Selecciona un gato..." 
+      (onChange)="onSelectGato()" 
+      optionLabel="label"
+      class="search-dropdown"
+    ></p-dropdown>
+
+    <button *ngIf="selectedGato" class="clear-button" (click)="cancelarBusqueda()">
+      <i class="pi pi-times"></i>
+    </button>
+  </div>
+</div>
+
+<div class="gatos-grid">
+  <div *ngFor="let gato of gatosFiltrados" class="mascota-card" [ngClass]="{'no-disponible': gato.estado !== 'En Adopción'}">
+      <img [src]="gato.foto" alt="{{ gato.nombre }}" class="gato-imagen">
+      <h3>{{ gato.nombre }}</h3>
+      <p>Raza: {{ gato.raza }}</p>
+      <p>Edad: {{ gato.edad }} años</p>
+      <p>Peso: {{ gato.peso }} kg</p>
+      <p>Estado: <p-tag [value]="gato.estado" [severity]="getSeverity(gato.estado)"></p-tag></p>
+      <button (click)="abrirStepper(gato)" [disabled]="gato.estado !== 'En Adopción'" class="adoptar-button">
+          {{ gato.estado === 'En Adopción' ? 'Adoptar' : 'No Disponible' }}
+      </button>
+  </div>
+</div>
+
+<!-- Modal del proceso de adopción -->
+<p-dialog [(visible)]="stepperVisible" [modal]="true" [style]="{ width: '650px' }" header="Proceso de Adopción">
+  <ng-template pTemplate="header">
+    <h2>Proceso de Adopción</h2>
+  </ng-template>
+  <ng-template pTemplate="content">
+      <p-steps [(activeIndex)]="activeStep" [model]="steps" [readonly]="true" class="custom-steps"></p-steps>
+
+    <!-- Paso 1: Información del Adoptante -->
+    <div *ngIf="activeStep === 0" class="step-content">
+      <h3>Información del Adoptante</h3>
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" [(ngModel)]="nombreAdoptante" placeholder="Ingrese su nombre" class="input-field">
+      </div>
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input
+          id="telefono"
+          type="tel"
+          [(ngModel)]="telefonoAdoptante"
+          placeholder="Ingrese su teléfono"
+          class="input-field"
+          (keypress)="allowOnlyNumbers($event)"
+        />
+      </div>      
+    </div>
+
+    <!-- Paso 2: Confirmación -->
+    <div *ngIf="activeStep === 1" class="step-content">
+      <h3>Confirmación</h3>
+      <p>Adoptando a <strong>{{ selectedGato?.nombre }}</strong></p>
+    </div>
+
+    <!-- Paso 3: Completar -->
+    <div *ngIf="activeStep === 2" class="step-content">
+      <h3>Completar</h3>
+      <p>¡Gracias por adoptar a <strong>{{ selectedGato?.nombre }}</strong>!</p>
+      <p> Nos pondremos en contacto contigo</p>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <div class="footer-buttons">
+      <button *ngIf="activeStep > 0" (click)="pasoAnterior()" class="p-button p-button-secondary">Anterior</button>
+      <button *ngIf="activeStep < 2" (click)="siguientePaso()" class="p-button p-button-primary">Siguiente</button>
+      <button *ngIf="activeStep === 2" (click)="completarAdopcion()" class="p-button p-button-success">Completar</button>
+      <button (click)="cerrarStepper()" class="p-button p-button-secondary">Cancelar</button>
+    </div>
+  </ng-template>
+</p-dialog>

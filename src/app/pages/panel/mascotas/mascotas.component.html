@@ -319,6 +319,7 @@
           inputId="estado"
           appendTo="body"
           [(ngModel)]="mascota.estado"
+          (onChange)="onRowEditSave(mascota)"
           [style]="{ width: '100%' }"
         >
           <ng-template pTemplate="selectedItem">

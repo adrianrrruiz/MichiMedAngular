@@ -15,6 +15,7 @@ import { CalculadoraPesoComponent } from './pages/calculadora-peso/calculadora-p
 import { VeterinariosComponent } from './pages/panel/veterinarios/veterinarios.component';
 import { SuministrarTratamientosComponent } from './pages/panel/suministrar-tratamientos/suministrar-tratamientos.component';
 import { TiendaComponent } from './pages/tienda/tienda.component';
+import { ConfirmarAdopcionComponent } from './components/confirmar-adopcion/confirmar-adopcion.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -29,8 +30,9 @@ const routes: Routes = [
   { path: 'suministrar-tratamiento', component: SuministrarTratamientosComponent, canActivate: [AuthGuard] },
   { path: 'calculadora-peso', component: CalculadoraPesoComponent },
   { path: 'tienda', component: TiendaComponent },
+  { path: 'adopciones-pendientes', component: ConfirmarAdopcionComponent, canActivate: [AuthGuard] },
   { path: '', component: LandingComponent },
-  { path: '**', component: ErrorComponent }
+  { path: '**', component: ErrorComponent },
 ];
 
 @NgModule({

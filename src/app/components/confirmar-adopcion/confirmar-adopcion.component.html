@@ -1,0 +1,32 @@
+<div class="veterinaria-container">
+    <h2>Mascotas Pendientes de Adopción</h2>
+  
+    <div class="gatos-grid">
+      <div *ngFor="let mascota of mascotasPendientes" class="mascota-card">
+        <img [src]="mascota.foto" alt="{{ mascota.nombre }}" class="gato-imagen" />
+        
+        <div class="mascota-info">
+          <h3>{{ mascota.nombre }}</h3>
+          <p><strong>Raza:</strong> {{ mascota.raza }}</p>
+          <p><strong>Edad:</strong> {{ mascota.edad }} años</p>
+          <p><strong>Peso:</strong> {{ mascota.peso }} kg</p>
+        </div>
+  
+        <div *ngIf="mascota.cliente" class="adoptante-info">
+          <h4>Información del Adoptante</h4>
+          <p><strong>Nombre:</strong> {{ mascota.cliente.nombre }}</p>
+          <p><strong>Teléfono:</strong> {{ mascota.cliente.telefono }}</p>
+        </div>
+  
+        <div class="button-group">
+          <button *ngIf="mascota.id" (click)="confirmarAdopcion(mascota.id)" class="confirmar-button">
+            Confirmar Adopción
+          </button>
+          <button *ngIf="mascota.id" (click)="rechazarAdopcion(mascota.id)" class="rechazar-button">
+            Rechazar Adopción
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -7,4 +7,6 @@
     email: string;
     contrasena: string;
     mascotas?: Mascota[];
+
+    telefono?: string;
   }

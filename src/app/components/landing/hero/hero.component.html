@@ -35,6 +35,13 @@
       >
         Habla con Nuestros Expertos
       </button>
+      <!-- Botón de adopción -->
+      <button
+        class="bg-[var(--color-2)] text-white hover:bg-[var(--color-1)] px-6 py-3 rounded-full transition font-sarabun font-semibold"
+        (click)="showAdopcionDialog = true"
+      >
+        Adoptar un Gato
+      </button>
     </div>
   </div>
 
@@ -49,3 +56,13 @@
     />
   </div>
 </section>
+
+<!-- Modal de Adopción -->
+<p-dialog
+  header="Adopción de Gatos"
+  [(visible)]="showAdopcionDialog"
+  [modal]="true"
+  [style]="{ width: '60vw' }"
+>
+  <app-seleccion-mascotas></app-seleccion-mascotas>
+</p-dialog>

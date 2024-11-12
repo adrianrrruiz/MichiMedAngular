@@ -15,22 +15,14 @@ import { ClienteService } from '../../../services/cliente.service';
 export class MascotasComponent implements OnInit {
 
   loading: boolean = true;
-
   newMascotaDialog: boolean = false;
   viewMascotaDialog: boolean = false;
-
   mascotas: Mascota[] = [];
-
   mascota!: Mascota;
-
   selectedMascota!: Mascota;
-
   submitted: boolean = false;
-
   statuses!: SelectItem[];
-
   clientes: Cliente[] = [];
-
   clonedMascotas: { [s: string]: Mascota } = {};
 
   constructor(
@@ -41,26 +33,23 @@ export class MascotasComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Carga mascotas y clientes
-    this.mascotaService
-      .getMascotas()
-      .subscribe((mascotas) => {
-        this.mascotas = mascotas
-        this.loading = false;
-      });
+    this.mascotaService.getMascotas().subscribe((mascotas) => {
+      this.mascotas = mascotas;
+      this.loading = false;
+    });
 
-    this.ClienteService.getClientes().subscribe(
-      (clientes) => (this.clientes = clientes)
-    );
+    this.ClienteService.getClientes().subscribe((clientes) => {
+      this.clientes = clientes;
+    });
 
     this.statuses = [
       { label: 'En tratamiento', value: 'En tratamiento' },
       { label: 'Tratado', value: 'Tratado' },
+      { label: 'En Adopción', value: 'En Adopción' },
     ];
   }
 
   deleteMascota(id: number, nombre: string): void {
-    // Confirma y elimina una mascota
     this.confirmationService.confirm({
       message: '¿Estas seguro que quieres eliminar a ' + nombre + '?',
       header: 'Confirmar eliminación',
@@ -68,9 +57,7 @@ export class MascotasComponent implements OnInit {
       accept: () => {
         this.mascotaService.deleteMascota(id).subscribe(
           () => {
-            this.mascotas = this.mascotas.filter(
-              (mascota) => mascota.id !== id
-            );
+            this.mascotas = this.mascotas.filter((mascota) => mascota.id !== id);
             this.messageService.add({
               severity: 'success',
               summary: '¡Exitoso!',
@@ -91,13 +78,15 @@ export class MascotasComponent implements OnInit {
     });
   }
 
-  getSeverity(status: string) {
-    // Retorna estado mascota
+  getSeverity(status: string): string {
+    // Mostrar el estado "Disponible" en amarillo
     switch (status) {
       case 'En tratamiento':
         return 'info';
       case 'Tratado':
         return 'success';
+      case 'En Adopción':
+        return 'warning';  // amarillo para "Disponible"
       default:
         return 'info';
     }
@@ -107,14 +96,47 @@ export class MascotasComponent implements OnInit {
     this.clonedMascotas[mascota.id as number] = { ...mascota };
   }
 
-  onRowEditSave(mascota: Mascota) {
-    // Guarda cambios de una fila editada
+  onRowEditSave(mascota: Mascota): void {
+    const estadoAnterior = this.clonedMascotas[mascota.id as number]?.estado || mascota.estado;
+  
+    if (mascota.estado === 'En Adopción') {
+      this.confirmationService.confirm({
+        message: `¿Estás seguro de que quieres poner a ${mascota.nombre} en adopción?`,
+        header: 'Confirmar Adopción',
+        icon: 'pi pi-exclamation-triangle',
+        acceptLabel: 'Sí',
+        rejectLabel: 'No',
+        acceptButtonStyleClass: 'pastel-confirm-button',
+        rejectButtonStyleClass: 'pastel-cancel-button',
+        accept: () => {
+          // Actualiza la mascota en el backend y muestra el mensaje
+          this.updateMascotaAndShowMessage(mascota);
+          this.messageService.add({
+            severity: 'info',
+            summary: 'Confirmado',
+            detail: `${mascota.nombre} está ahora en adopción.`,
+            life: 3000
+          });
+        },
+        reject: () => {
+          mascota.estado = estadoAnterior;
+        }
+      });
+    } else {
+      // Si el estado es diferente a "Disponible", actualizamos directamente sin confirmar
+      this.updateMascotaAndShowMessage(mascota);
+    }
+  }
+  
+
+  private updateMascotaAndShowMessage(mascota: Mascota) {
     this.mascotaService.updateMascota(mascota).subscribe(
       () => {
         this.messageService.add({
           severity: 'success',
           summary: '¡Exitoso!',
-          detail: 'Mascota actualizada',
+          detail: `Mascota ${mascota.nombre} actualizada correctamente`,
+          life: 3000,
         });
       },
       (error) => {
@@ -129,7 +151,6 @@ export class MascotasComponent implements OnInit {
   }
 
   onRowEditCancel(mascota: Mascota, index: number) {
-    // Cancela la deición
     this.mascotas[index] = this.clonedMascotas[mascota.id as number];
     delete this.clonedMascotas[mascota.id as number];
   }
@@ -144,16 +165,13 @@ export class MascotasComponent implements OnInit {
 
   openView(mascota: Mascota) {
     this.selectedMascota = mascota;
-    this.mascotaService
-      .getClienteByMascotaId(this.selectedMascota.id!)
-      .subscribe(
-        (cliente) => (this.selectedMascota.cliente = cliente)
-      );
+    this.mascotaService.getClienteByMascotaId(this.selectedMascota.id!).subscribe((cliente) => {
+      this.selectedMascota.cliente = cliente;
+    });
     this.viewMascotaDialog = true;
   }
 
   openNew() {
-    // Abrir dialogo ver detalles mascota
     this.mascota = {
       nombre: '',
       raza: '',
@@ -175,16 +193,13 @@ export class MascotasComponent implements OnInit {
   }
 
   saveMascota() {
-    // Guardar una nueva mascota
     this.submitted = true;
 
     if (this.mascota.nombre?.trim() && this.mascota.edad && this.mascota.peso && this.mascota.cliente) {
-      // Imagen por defecto
       this.mascota.foto = 'https://i.postimg.cc/CMRjCsMX/default-cat-image.jpg';
       if (this.mascota.cliente && this.mascota.cliente.id !== undefined) {
         this.mascotaService.addMascota(this.mascota, this.mascota.cliente.id);
       }
-      // Formatea la fecha actual
       const date = new Date();
       const formattedDate = `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getFullYear()).slice(-2)}`;
       this.mascota.fechaEntrada = formattedDate;

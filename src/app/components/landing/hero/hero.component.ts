@@ -6,22 +6,27 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./hero.component.css']
 })
 export class HeroComponent implements OnInit {
+  showAdopcionDialog: boolean = false; // Controla el modal de adopción
 
   ngOnInit() {
     setTimeout(() => {
-      const leftContent = document.querySelector('.left-content');
-      const rightContent = document.querySelector('.right-content');
+      this.animateContent();
+    }, 100);
+  }
 
-      if (leftContent) {
-        leftContent.classList.remove('-translate-x-full', 'opacity-0');
-        leftContent.classList.add('translate-x-0', 'opacity-100');
-      }
+  animateContent() {
+    const leftContent = document.querySelector('.left-content');
+    const rightContent = document.querySelector('.right-content');
 
-      if (rightContent) {
-        rightContent.classList.remove('translate-x-full', 'opacity-0');
-        rightContent.classList.add('translate-x-0', 'opacity-100');
-      }
-    }, 100); // Pequeño retraso para asegurarse de que el contenido se ha cargado
+    if (leftContent) {
+      leftContent.classList.remove('-translate-x-full', 'opacity-0');
+      leftContent.classList.add('translate-x-0', 'opacity-100');
+    }
+
+    if (rightContent) {
+      rightContent.classList.remove('translate-x-full', 'opacity-0');
+      rightContent.classList.add('translate-x-0', 'opacity-100');
+    }
   }
 
   @HostListener('document:mousemove', ['$event'])
@@ -30,9 +35,7 @@ export class HeroComponent implements OnInit {
     if (heroSection) {
       const x = event.clientX / window.innerWidth;
       const y = event.clientY / window.innerHeight;
-      heroSection.style.background = `radial-gradient(circle at ${
-        x * 100
-      }% ${y * 100}%, var(--color-1), var(--color-2))`;
+      heroSection.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, var(--color-1), var(--color-2))`;
     }
   }
 }
