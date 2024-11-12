@@ -5,7 +5,9 @@
   align-items: center;
 }
 
-.header-2 img {height: 40px;}
+.header-2 img {
+  height: 40px;
+}
 
 /* PANEL MENU */
 #sidebar {
@@ -16,11 +18,17 @@
   height: 100%;
   padding-top: 60px; /* Deja espacio para el logo */
 }
-#sidebar.collapsed {transform: translateX(-100%);}
+#sidebar.collapsed {
+  transform: translateX(-100%);
+}
 
-.nav-link {color: var(--text-secondary);}
+.nav-link {
+  color: var(--color-2);
+}
 
-.nav-link:hover {color: var(--text-terciary);}
+.nav-link:hover {
+  color: var(--color-1);
+}
 
 .logo {
   position: fixed;

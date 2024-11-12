@@ -1,7 +1,9 @@
 <app-layout></app-layout>
 
 <main id="content">
-  <h1 class="mb-3 text-center text-3xl">Todos nuestros gatitos</h1>
+  <h1 class="mb-3 text-center text-3xl text-[var(--color-2)]">
+    Todos nuestros gatitos
+  </h1>
   <p-toast></p-toast>
   <p-table
     #mascotasTable
@@ -35,9 +37,7 @@
           type="button"
           pButton
           pRipple
-          label="Export"
-          icon="pi pi-upload"
-          class="p-button-help"
+          icon="pi pi-file-excel"
           (click)="exportExcel()"
           class="p-button-success mr-2"
           pTooltip="XLS"
@@ -47,10 +47,11 @@
           pButton
           pRipple
           id="btnNewMascota"
-          label="New"
           icon="pi pi-plus"
-          class="p-button-success mr-2"
+          class="mr-2 bg-[var(--color-1)] text-white hover:bg-[var(--color-2)]"
           (click)="openNew()"
+          pTooltip="Agregar"
+          tooltipPosition="bottom"
         ></button>
       </div>
     </ng-template>
@@ -184,7 +185,7 @@
             type="button"
             icon="pi pi-eye"
             (click)="openView(mascota)"
-            class="p-button-rounded p-button-text"
+            class="p-button-rounded p-button-text text-[var(--color-1)]"
           ></button>
           <button
             *ngIf="!editing"
@@ -194,14 +195,14 @@
             pInitEditableRow
             icon="pi pi-pencil"
             (click)="onRowEditInit(mascota)"
-            class="p-button-rounded p-button-text"
+            class="p-button-rounded p-button-text text-[var(--color-1)]"
           ></button>
           <button
             *ngIf="!editing"
             pButton
             pRipple
             icon="pi pi-trash"
-            class="p-button-rounded p-button-warning"
+            class="p-button-rounded p-button-danger"
             (click)="deleteMascota(mascota.id, mascota.nombre)"
           ></button>
           <button
