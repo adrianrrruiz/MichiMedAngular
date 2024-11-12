@@ -16,7 +16,8 @@
         [(ngModel)]="tratamiento.mascota"
         [filter]="true"
         filterBy="nombre"
-        class="block w-full"
+        class="block"
+        [style]="{ width: '15rem' }"
       ></p-dropdown>
     </div>
 
@@ -30,7 +31,8 @@
         [(ngModel)]="tratamiento.veterinario"
         [filter]="true"
         filterBy="nombre"
-        class="block w-full"
+        class="block"
+        [style]="{ width: '15rem' }"
       ></p-dropdown>
     </div>
 
@@ -58,15 +60,18 @@
         [(ngModel)]="tratamiento.droga"
         [filter]="true"
         filterBy="nombre"
-        class="block w-full"
+        class="block"
+        [style]="{ width: '15rem' }"
       ></p-dropdown>
     </div>
 
-    <app-btn1
-      id="btnSaveTratamiento"
-      label="Registrar tratamiento"
-      icon="pi pi-history"
-      (onClick)="saveTratamiento()"
-    ></app-btn1>
+    <div class="w-60">
+      <app-btn1
+        id="btnSaveTratamiento"
+        label="Registrar tratamiento"
+        icon="pi pi-history"
+        (onClick)="saveTratamiento()"
+      ></app-btn1>
+    </div>
   </div>
 </main>
