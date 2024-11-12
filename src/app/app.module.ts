@@ -63,6 +63,8 @@ import { TimelineModule } from 'primeng/timeline';
 import { CardModule } from 'primeng/card';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { AgendarCitaComponent } from './pages/agendar-cita/agendar-cita.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +99,9 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     FaqComponent,
     ContactFormComponent,
     DondeEncontrarnosComponent,
-    Btn1Component
+    Btn1Component,
+    AgendarCitaComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
