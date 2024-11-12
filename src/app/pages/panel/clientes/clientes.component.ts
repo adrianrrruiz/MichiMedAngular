@@ -4,6 +4,7 @@ import { Cliente } from 'src/app/model/cliente';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { Table } from 'primeng/table'
 import { Mascota } from 'src/app/model/mascota';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-clientes',
@@ -114,11 +115,21 @@ export class ClientesComponent implements OnInit {
   }
 
   exportExcel() {
-    // import('xlsx').then((xlsx) => {
-    //     const worksheet = xlsx.utils.json_to_sheet(this.products);
-    //     const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
-    //     const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
-    //     this.saveAsExcelFile(excelBuffer, 'products');
-    // });
+    import('xlsx').then((xlsx) => {
+        const clientesFiltered = this.clientes.map(({ contrasena, ...rest }) => rest);
+        const worksheet = xlsx.utils.json_to_sheet(clientesFiltered);
+        const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
+        const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+        this.saveAsExcelFile(excelBuffer, 'clientes');
+    });
   }
+
+  saveAsExcelFile(buffer: any, fileName: string): void {
+    let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+    let EXCEL_EXTENSION = '.xlsx';
+    const data: Blob = new Blob([buffer], {
+        type: EXCEL_TYPE
+    });
+    FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+}
 }

@@ -31,7 +31,7 @@
         </p>
       </div>
       <div
-        (click)="openNewWindow('tienda')"
+        routerLink="/tienda"
         class="service-item flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md cursor-pointer hover:-translate-x-4 transition-transform duration-300"
       >
         <i class="pi pi-cart-plus text-3xl text-[var(--color-1)] mb-2"></i>
@@ -58,7 +58,7 @@
       class="space-y-6 right-cards transform translate-x-full opacity-0 transition-all duration-1000 ease-out"
     >
       <div
-        (click)="openNewWindow('blogs')"
+        routerLink="/blogs"
         class="service-item flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md cursor-pointer hover:translate-x-4 transition-transform duration-300"
       >
         <i class="pi pi-bookmark text-3xl text-[var(--color-1)] mb-2"></i>
@@ -70,7 +70,7 @@
         </p>
       </div>
       <div
-        (click)="openNewWindow('calculadora')"
+        routerLink="/calculadora-peso"
         class="service-item flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md cursor-pointer hover:translate-x-4 transition-transform duration-300"
       >
         <i class="pi pi-calculator text-3xl text-[var(--color-1)] mb-2"></i>
@@ -94,9 +94,7 @@
   <div class="flex flex-column gap-2">
     <label for="cedula">Ingrese su cédula</label>
     <input pInputText class="primeng-input" id="cedula" [(ngModel)]="cedula" />
-    <button id="btnBuscarMascotas" class="btn-2" (click)="buscarMascota()">
-      Buscar
-    </button>
+    <app-btn1 [label]="'Buscar'" (onClick)="buscarMascota()">Buscar</app-btn1>
   </div>
 
   <!-- Mostrar mascotas encontradas -->
@@ -111,10 +109,9 @@
     >
       <div class="flex justify-center">
         <img
-          class="object-cover rounded-full shadow-2 mb-4"
-          [alt]="mascota.nombre"
           [src]="mascota.foto"
-          width="200"
+          [alt]="mascota.nombre"
+          class="block m-auto w-32 h-32 rounded-full object-cover p-2"
         />
       </div>
       <ul class="data list-none p-0 text-center">
@@ -125,54 +122,63 @@
           ></p-tag>
         </li>
         <li class="mb-2">
-          <strong>Edad: </strong><span>{{ mascota.edad }} años</span>
+          <strong class="text-[var(--color-2)]">Edad: </strong
+          ><span>{{ mascota.edad }} años</span>
         </li>
         <li class="mb-2">
-          <strong>Raza: </strong><span>{{ mascota.raza }}</span>
+          <strong class="text-[var(--color-2)]">Raza: </strong
+          ><span>{{ mascota.raza }}</span>
         </li>
         <li class="mb-2">
-          <strong>Peso: </strong><span>{{ mascota.peso }} kg</span>
+          <strong class="text-[var(--color-2)]">Peso: </strong
+          ><span>{{ mascota.peso }} kg</span>
         </li>
       </ul>
       <div class="flex justify-center flex-col items-center gap-2">
-        <p-button
+        <app-btn1
           label="Ver tratamientos"
-          [icon]="'pi pi-history'"
-          [rounded]="true"
-          severity="secondary"
-          (click)="verTratamientos(mascota.id!)"
-        ></p-button>
-        <p-button
+          icon="pi pi-history"
+          (onClick)="verTratamientos(mascota.id!)"
+        ></app-btn1>
+        <app-btn1
           label="Recomendaciones"
-          [icon]="'pi pi-info-circle'"
-          [rounded]="true"
-          severity="secondary"
-          (click)="consultarRecomendacion(mascota)"
-        ></p-button>
+          icon="pi pi-info-circle"
+          (onClick)="consultarRecomendacion(mascota)"
+        ></app-btn1>
       </div>
     </p-card>
   </div>
 </p-dialog>
 
-<!-- Dialog para ver recomendación en mascota -->
 <p-dialog
-  [header]="'Recomendaciones para ' + selectedMascota?.nombre"
+  [header]="'Recomendaciones para tu gatito'"
   [(visible)]="recomendacionDialog"
-  [style]="{ width: '50vw' }"
+  contentStyleClass="max-w-[65rem]"
   [draggable]="false"
   [modal]="true"
 >
-  <div class="flex flex-column gap-2">
+  <div class="flex justify-center items-center h-full" *ngIf="!recomendacion">
+    <p-progressSpinner aria-label="Loading"></p-progressSpinner>
+  </div>
+  <!-- Contenedor principal con grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+    <!-- Imagen de la Mascota (50% en pantallas grandes) -->
     <div class="flex justify-center">
       <img
-        class="object-cover rounded-full shadow-2 mb-4"
-        [alt]="selectedMascota?.nombre"
         [src]="selectedMascota?.foto"
-        width="200"
+        [alt]="selectedMascota?.nombre"
+        class="w-36 h-36 md:w-80 md:h-80 rounded-full object-cover"
       />
     </div>
-    <h3>{{ selectedMascota?.nombre }}</h3>
-    <div [innerHTML]="recomendacion | formatoRecomendacion"></div>
+    <!-- Spinner mientras 'recomendacion' esté vacío -->
+
+    <!-- Recomendación (50% en pantallas grandes, alineado a la izquierda) -->
+    <div class="text-left" *ngIf="recomendacion">
+      <h3 class="text-[var(--color-2)] font-bold">
+        {{ selectedMascota?.nombre }}
+      </h3>
+      <div [innerHTML]="recomendacion | formatoRecomendacion"></div>
+    </div>
   </div>
 </p-dialog>
 
@@ -200,7 +206,7 @@
           width="200"
         />
       </div>
-      <h4>Drogas asignada</h4>
+      <h4>Droga asignada:</h4>
       <p>
         {{
           tratamiento.nombreDroga

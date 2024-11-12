@@ -38,6 +38,7 @@ import { TestimoniosComponent } from './components/landing/testimonios/testimoni
 import { FaqComponent } from './components/landing/faq/faq.component';
 import { ContactFormComponent } from './components/landing/contact-form/contact-form.component';
 import { DondeEncontrarnosComponent } from './components/landing/donde-encontrarnos/donde-encontrarnos.component';
+import { Btn1Component } from './components/landing/btn1/btn1.component';
 
 // Componentes adicionales
 import { SeleccionMascotasComponent } from './components/seleccion-mascotas/seleccion-mascotas.component';
@@ -69,6 +70,11 @@ import { AuthInterceptor } from './helpers/auth.interceptor';
 import { AuthGuard } from './auth.guard';
 import { AdminGuard } from './admin.guard';
 import { ConfirmarAdopcionComponent } from './components/confirmar-adopcion/confirmar-adopcion.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { AgendarCitaComponent } from './pages/agendar-cita/agendar-cita.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { GetTokenComponent } from './pages/get-token/get-token.component';
+import { VerCitasComponent } from './pages/ver-citas/ver-citas.component';
 
 @NgModule({
   declarations: [
@@ -106,6 +112,11 @@ import { ConfirmarAdopcionComponent } from './components/confirmar-adopcion/conf
     SeleccionMascotasComponent,
     ProcesoAdopcionComponent,
     ConfirmarAdopcionComponent,
+    Btn1Component,
+    AgendarCitaComponent,
+    ResetPasswordComponent,
+    GetTokenComponent,
+    VerCitasComponent
   ],
   imports: [
     BrowserModule,
@@ -133,7 +144,8 @@ import { ConfirmarAdopcionComponent } from './components/confirmar-adopcion/conf
     TimelineModule,
     CardModule,
     PanelMenuModule,
-    StepsModule  // Importado StepsModule
+    StepsModule,  // Importado StepsModule
+    ProgressSpinnerModule
   ],
   providers: [
     {

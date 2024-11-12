@@ -9,7 +9,7 @@ export class FormatoRecomendacionPipe implements PipeTransform {
     if (!value) return value;
 
     // Reemplazar **texto** por <strong>texto</strong>
-    value = value.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    value = value.replace(/\*\*(.*?)\*\*/g, '<strong class="text-[var(--color-1)]">$1</strong>');
 
     // Reemplazar saltos de línea con <br>
     value = value.replace(/\n/g, '<br>');

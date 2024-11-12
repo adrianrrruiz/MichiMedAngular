@@ -1,0 +1,73 @@
+<!-- Contenedor Principal -->
+<div
+  class="min-h-screen flex flex-col justify-between bg-[var(--color-1)] text-white"
+>
+  <!-- Header -->
+  <header class="p-5">
+    <nav class="flex justify-between items-center max-w-5xl mx-auto">
+      <a href="/">
+        <img
+          class="h-12"
+          src="../assets/img/MichimedP1_White.png"
+          alt="MichiMed Logo"
+        />
+      </a>
+    </nav>
+  </header>
+
+  <!-- Contenido Central -->
+  <main class="flex flex-grow items-center justify-center px-4">
+    <div
+      class="bg-white text-[var(--text-color)] rounded-2xl shadow-lg p-8 md:p-10 max-w-md w-full"
+    >
+      <h1
+        class="text-2xl md:text-3xl font-bold text-[var(--color-2)] mb-6 text-center"
+      >
+        Por favor ingresa tu correo electrónico
+      </h1>
+
+      <!-- Formulario de Inicio de Sesión -->
+      <form [formGroup]="resetForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <!-- Campo de Cédula -->
+        <div class="text-left">
+          <label
+            for="correo"
+            class="block text-lg font-semibold text-[var(--color-2)] mb-2"
+            >Correo</label
+          >
+          <input
+            type="text"
+            id="correo"
+            class="w-full px-4 py-3 border border-[var(--color-2)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-5)]"
+            formControlName="email"
+            placeholder="Ingresa tu correo"
+            required
+          />
+        </div>
+
+        <!-- Botón de Ingresar -->
+        <button
+          id="btnIngresar"
+          type="submit"
+          class="w-full bg-[var(--color-2)] text-white font-semibold py-3 rounded-lg shadow-md hover:bg-[var(--color-5)] transition-transform transform hover:scale-105"
+        >
+          recuperar
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 bg-[var(--color-2)] text-[var(--color-3)]">
+    <div class="flex justify-center space-x-4 text-[var(--color-3)] mb-2">
+      <a href="#" class="no-underline text-[var(--white)] hover:underline"
+        >Términos de Uso</a
+      >
+      <a href="#" class="no-underline text-[var(--white)] hover:underline"
+        >Política de Privacidad</a
+      >
+    </div>
+    <p class="text-sm">&copy; 2024 MichiMed. Todos los derechos reservados.</p>
+  </footer>
+</div>
+<p-toast></p-toast>

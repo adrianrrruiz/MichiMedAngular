@@ -1,4 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener,OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hero',
@@ -8,7 +9,9 @@ import { Component, HostListener, OnInit } from '@angular/core';
 export class HeroComponent implements OnInit {
   showAdopcionDialog: boolean = false; // Controla el modal de adopción
 
-  ngOnInit() {
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
     setTimeout(() => {
       this.animateContent();
     }, 100);
@@ -37,5 +40,9 @@ export class HeroComponent implements OnInit {
       const y = event.clientY / window.innerHeight;
       heroSection.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, var(--color-1), var(--color-2))`;
     }
+  }
+
+  navigateToAgendarCita() {
+    this.router.navigate(['/agendar-cita']);
   }
 }

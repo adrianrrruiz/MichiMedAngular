@@ -25,16 +25,16 @@
     <div
       class="flex flex-col md:flex-row justify-center w-full space-y-4 md:space-y-0 md:space-x-4 mb-10"
     >
-      <button
-        class="bg-[var(--color-1)] text-white hover:bg-[var(--color-2)] px-6 py-3 rounded-full transition font-sarabun font-semibold"
-      >
-        Reserva tu Cita Ahora
-      </button>
-      <button
-        class="bg-[var(--transparent)] border border-[var(--color-2)] text-[var(--white)] px-6 py-3 rounded-full hover:border-[var(--color-1)] hover:bg-[var(--color-2)] hover:text-[var(--white)] transition font-sarabun font-bold"
+      <app-btn1
+        label="Reserva tu Cita Ahora"
+        (onClick)="navigateToAgendarCita()"
+      ></app-btn1>
+      <a
+        href="#contact"
+        class="bg-[var(--transparent)] border border-[var(--color-2)] text-[var(--white)] px-6 py-3 rounded-full hover:border-[var(--color-1)] hover:bg-[var(--color-2)] hover:text-[var(--white)] transition font-sarabun font-bold no-underline"
       >
         Habla con Nuestros Expertos
-      </button>
+      </a>
       <!-- Botón de adopción -->
       <button
         class="bg-[var(--color-2)] text-white hover:bg-[var(--color-1)] px-6 py-3 rounded-full transition font-sarabun font-semibold"

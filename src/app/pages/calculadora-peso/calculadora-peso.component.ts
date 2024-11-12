@@ -10,7 +10,7 @@ export class CalculadoraPesoComponent {
   visible = false;
   pesoForm: FormGroup;
   pesoIdeal: { min: number; max: number } | null = null;
-  mensajePeso: { texto: string; color: string; icono: string } | null = null;
+  mensajePeso: { texto: string; color: string; gifUrl: string } | null = null;
 
   constructor(private fb: FormBuilder) {
     this.pesoForm = this.fb.group({
@@ -65,19 +65,19 @@ export class CalculadoraPesoComponent {
         this.mensajePeso = {
           texto: 'Tu gato está por debajo de su peso ideal.',
           color: 'text-blue-600',
-          icono: 'bi bi-emoji-frown'
+          gifUrl: 'https://media.tenor.com/xCO75gIMoCoAAAAM/catsad-sad.gif'
         };
       } else if (peso > this.pesoIdeal!.max) {
         this.mensajePeso = {
           texto: 'Tu gato está por encima de su peso ideal.',
           color: 'text-red-600',
-          icono: 'bi bi-emoji-frown'
+          gifUrl: 'https://media.tenor.com/U5CKjbr_uKQAAAAM/cat-fat.gif'
         };
       } else {
         this.mensajePeso = {
           texto: '¡Felicidades! Tu gato tiene un peso ideal.',
           color: 'text-green-600',
-          icono: 'bi bi-emoji-smile'
+          gifUrl: 'https://media.tenor.com/6yMqezH9zcIAAAAM/cat-dance-dance-cat.gif'
         };
       }
 
