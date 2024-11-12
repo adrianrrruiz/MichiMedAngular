@@ -18,6 +18,7 @@ export class VerCitasComponent implements OnInit {
 
   buscarCitas(): void {
     if (this.selectedDate) {
+      this.citas = []; // Limpia las citas anteriores
       this.citasService.obtenerCitasPorFecha(this.selectedDate).subscribe(
         (response) => {
           this.citas = response;
