@@ -67,6 +67,7 @@ import { AgendarCitaComponent } from './pages/agendar-cita/agendar-cita.componen
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { GetTokenComponent } from './pages/get-token/get-token.component';
 import { VerCitasComponent } from './pages/ver-citas/ver-citas.component';
+import { HomeComponent } from './pages/panel/home/home.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +106,8 @@ import { VerCitasComponent } from './pages/ver-citas/ver-citas.component';
     AgendarCitaComponent,
     ResetPasswordComponent,
     GetTokenComponent,
-    VerCitasComponent
+    VerCitasComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

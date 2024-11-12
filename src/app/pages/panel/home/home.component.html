@@ -1,0 +1,77 @@
+<app-layout></app-layout>
+
+<main id="content">
+  <!-- Bienvenida personalizada -->
+  <section class="text-center mb-8">
+    <h1 class="text-4xl font-bold text-[var(--color-2)] mb-2">
+      ¡Bienvenido de nuevo, {{ nombre }}!
+    </h1>
+    <p class="text-lg text-[var(--text-secondary)]">
+      Estas son las mascotas bajo tu cuidado. ¡Gracias por tu compromiso!
+    </p>
+  </section>
+
+  <!-- Sección de mascotas en tratamiento -->
+  <section>
+    <h2 class="text-2xl font-bold text-[var(--color-1)] mb-4">
+      Tus mascotas en tratamiento
+    </h2>
+    <p
+      *ngIf="mascotasVeterinario.length == 0"
+      class="text-gray-600 text-center mb-6"
+    >
+      Actualmente, no tienes mascotas asignadas para el tratamiento.
+    </p>
+
+    <!-- Grid de mascotas -->
+    <div
+      *ngIf="mascotasVeterinario.length > 0"
+      class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4"
+    >
+      <div
+        *ngFor="let mascota of mascotasVeterinario"
+        class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center hover:shadow-xl transition-shadow"
+      >
+        <img
+          class="shadow-lg w-24 h-24 rounded-full object-cover mb-4"
+          [src]="mascota.foto"
+          alt="Foto de {{ mascota.nombre }}"
+        />
+        <h3
+          class="text-xl font-semibold text-[var(--color-2)] mb-2"
+          [innerText]="mascota.nombre"
+        ></h3>
+
+        <!-- Información adicional de la mascota -->
+        <ul class="data list-none p-0 text-center m-0">
+          <li class="mb-2">
+            <p-tag
+              [value]="mascota.estado"
+              [severity]="getSeverity(mascota.estado)"
+            ></p-tag>
+          </li>
+          <li class="mb-2">
+            <strong class="text-[var(--color-2)]">Edad: </strong
+            ><span>{{ mascota.edad }} años</span>
+          </li>
+          <li class="mb-2">
+            <strong class="text-[var(--color-2)]">Raza: </strong
+            ><span>{{ mascota.raza }}</span>
+          </li>
+          <li class="">
+            <strong class="text-[var(--color-2)]">Peso: </strong
+            ><span>{{ mascota.peso }} kg</span>
+          </li>
+        </ul>
+
+        <!-- Botón de historial médico -->
+        <button
+          pButton
+          label="Ver Historial Médico"
+          class="mt-2 w-full text-sm font-medium bg-[var(--color-2)] text-white py-2 rounded hover:bg-[var(--color-1)]"
+          (click)="mascota.id ? verHistorialMedico(mascota.id) : null"
+        ></button>
+      </div>
+    </div>
+  </section>
+</main>

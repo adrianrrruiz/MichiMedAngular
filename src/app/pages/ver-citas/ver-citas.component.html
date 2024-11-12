@@ -1,7 +1,7 @@
 <app-layout></app-layout>
 <main id="content">
   <div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4">Ver Citas</h1>
+    <h1 class="text-2xl font-bold mb-4 text-[var(--color-2)]">Ver Citas</h1>
     <div class="flex items-center space-x-4">
       <input
         type="date"
@@ -9,16 +9,20 @@
         class="border border-gray-300 rounded px-4 py-2"
         placeholder="Selecciona una fecha"
       />
-      <button
-        (click)="buscarCitas()"
-        class="bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-      >
-        Buscar Citas
-      </button>
+      <div class="w-60">
+        <app-btn1
+          id="btnSaveTratamiento"
+          label="Buscar citas"
+          icon="pi pi-search"
+          (onClick)="buscarCitas()"
+        ></app-btn1>
+      </div>
     </div>
     <div class="mt-4">
       <div *ngIf="citas.length > 0" class="mt-4">
-        <h2 class="text-xl font-semibold mb-2">Citas para el {{ selectedDate | date: 'yyyy-MM-dd' }}</h2>
+        <h2 class="text-xl font-semibold mb-2">
+          Citas para el {{ selectedDate | date : "yyyy-MM-dd" }}
+        </h2>
         <ul>
           <li *ngFor="let cita of citas" class="mb-2">
             <p><strong>Cliente:</strong> {{ cita.nombreCliente }}</p>

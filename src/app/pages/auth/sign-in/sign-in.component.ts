@@ -48,7 +48,7 @@ export class SignInComponent {
           }else{
             localStorage.setItem('admin', 'false');
             localStorage.setItem('idVeterinario', response.id.toString());
-            this.router.navigate(['/mascotas']); // Navega a la pág de mascotas
+            this.router.navigate(['/home']); // Navega a la pág de mascotas
           }
           this.formSubmit.emit();
         },

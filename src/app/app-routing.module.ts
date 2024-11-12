@@ -19,11 +19,13 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import { AgendarCitaComponent } from './pages/agendar-cita/agendar-cita.component';
 import { GetTokenComponent } from './pages/get-token/get-token.component';
 import { VerCitasComponent } from './pages/ver-citas/ver-citas.component';
+import { HomeComponent } from './pages/panel/home/home.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'admin/dashboard', component: DashboardComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'admin/veterinarios', component: VeterinariosComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'mascotas', component: MascotasComponent, canActivate: [AuthGuard] },
   { path: 'clientes', component: ClientesComponent, canActivate: [AuthGuard] },
