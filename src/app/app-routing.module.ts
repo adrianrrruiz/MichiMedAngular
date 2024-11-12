@@ -17,6 +17,7 @@ import { SuministrarTratamientosComponent } from './pages/panel/suministrar-trat
 import { TiendaComponent } from './pages/tienda/tienda.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { AgendarCitaComponent } from './pages/agendar-cita/agendar-cita.component';
+import { GetTokenComponent } from './pages/get-token/get-token.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'suministrar-tratamiento', component: SuministrarTratamientosComponent, canActivate: [AuthGuard] },
   { path: 'calculadora-peso', component: CalculadoraPesoComponent },
   { path: 'agendar-cita', component: AgendarCitaComponent },
+  { path: 'get-token', component: GetTokenComponent },
   { path: 'tienda', component: TiendaComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: '', component: LandingComponent },

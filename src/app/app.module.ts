@@ -65,6 +65,7 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { AgendarCitaComponent } from './pages/agendar-cita/agendar-cita.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { GetTokenComponent } from './pages/get-token/get-token.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
     DondeEncontrarnosComponent,
     Btn1Component,
     AgendarCitaComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    GetTokenComponent
   ],
   imports: [
     BrowserModule,
