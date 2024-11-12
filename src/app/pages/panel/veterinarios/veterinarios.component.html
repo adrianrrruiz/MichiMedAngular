@@ -1,7 +1,9 @@
 <app-layout></app-layout>
 
 <main id="content">
-  <h1 class="mb-3 text-center text-3xl">Todos nuestros veterinarios</h1>
+  <h1 class="mb-3 text-center text-3xl text-[var(--color-2)]">
+    Todos nuestros veterinarios
+  </h1>
   <p-toast></p-toast>
   <p-table
     #veterinariosTable
@@ -32,12 +34,24 @@
           />
         </span>
         <button
+          type="button"
           pButton
           pRipple
-          label="New"
-          icon="pi pi-plus"
+          icon="pi pi-file-excel"
+          (click)="exportExcel()"
           class="p-button-success mr-2"
+          pTooltip="XLS"
+          tooltipPosition="bottom"
+        ></button>
+        <button
+          pButton
+          pRipple
+          id="btnNewVeterinario"
+          icon="pi pi-plus"
+          class="mr-2 bg-[var(--color-1)] text-white hover:bg-[var(--color-2)]"
           (click)="openNew()"
+          pTooltip="Agregar"
+          tooltipPosition="bottom"
         ></button>
       </div>
     </ng-template>
@@ -104,7 +118,7 @@
             type="button"
             icon="pi pi-eye"
             (click)="openView(veterinario)"
-            class="p-button-rounded p-button-text"
+            class="p-button-rounded p-button-text text-[var(--color-1)]"
           ></button>
           <button
             *ngIf="!editing"
@@ -114,14 +128,14 @@
             pInitEditableRow
             icon="pi pi-pencil"
             (click)="onRowEditInit(veterinario)"
-            class="p-button-rounded p-button-text"
+            class="p-button-rounded p-button-text text-[var(--color-1)]"
           ></button>
           <button
             *ngIf="!editing"
             pButton
             pRipple
             icon="pi pi-trash"
-            class="p-button-rounded p-button-warning"
+            class="p-button-rounded p-button-danger"
             (click)="deleteVeterinario(veterinario.id, veterinario.nombre)"
           ></button>
           <button
@@ -275,7 +289,11 @@
           <span [innerText]="selectedVeterinario.especialidad"></span>
         </li>
       </ul>
-      <h2 class="align-self-center text-xl font-bold mt-4">Mascotas:</h2>
+      <h2
+        class="align-self-center text-xl font-bold mt-4 text-[var(--color-1)]"
+      >
+        Mascotas:
+      </h2>
       <p *ngIf="mascotasVeterinario.length == 0">
         Por el momento no tiene mascotas asignadas
       </p>
@@ -284,7 +302,7 @@
           class="flex flex-col items-center"
           *ngFor="let mascota of mascotasVeterinario"
         >
-          <h3 [innerText]="mascota.nombre"></h3>
+          <h3 class="text-[var(--color-2)]" [innerText]="mascota.nombre"></h3>
           <img
             class="shadow-4 w-20 h-20 rounded-full object-cover img-fluid mt-2"
             [src]="mascota.foto"

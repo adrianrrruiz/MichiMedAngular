@@ -5,6 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Veterinario } from 'src/app/model/veterinario';
 import { VeterinarioService } from 'src/app/services/veterinario.service';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-veterinarios',
@@ -165,4 +166,23 @@ export class VeterinariosComponent implements OnInit {
   verHistorialMedico(mascotaId: number) {
     this.router.navigate(['/historial-medico', mascotaId]);
   }
+
+  exportExcel() {
+    import('xlsx').then((xlsx) => {
+        const veterinariosFiltered = this.veterinarios.map(({ contrasena, ...rest }) => rest);
+        const worksheet = xlsx.utils.json_to_sheet(veterinariosFiltered);
+        const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
+        const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+        this.saveAsExcelFile(excelBuffer, 'veterinarios');
+    });
+  }
+
+  saveAsExcelFile(buffer: any, fileName: string): void {
+    let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+    let EXCEL_EXTENSION = '.xlsx';
+    const data: Blob = new Blob([buffer], {
+        type: EXCEL_TYPE
+    });
+    FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+}
 }

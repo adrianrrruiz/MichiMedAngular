@@ -3,6 +3,17 @@
   padding: 0 !important;
 }
 
+.p-confirm-dialog-reject {
+  margin-right: 10px;
+}
+
+.p-button, .p-link {
+  border-radius: 9999px;
+}
+
+.p-dialog-title, .p-card-title, .p-dialog-header {
+  color: var(--color-2);
+}
 /* Tailwind */
 @tailwind base;
 @tailwind components;
