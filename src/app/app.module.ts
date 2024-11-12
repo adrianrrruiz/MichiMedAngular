@@ -66,6 +66,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { AgendarCitaComponent } from './pages/agendar-cita/agendar-cita.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { GetTokenComponent } from './pages/get-token/get-token.component';
+import { VerCitasComponent } from './pages/ver-citas/ver-citas.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { GetTokenComponent } from './pages/get-token/get-token.component';
     Btn1Component,
     AgendarCitaComponent,
     ResetPasswordComponent,
-    GetTokenComponent
+    GetTokenComponent,
+    VerCitasComponent
   ],
   imports: [
     BrowserModule,

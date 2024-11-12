@@ -34,9 +34,11 @@ export class GetTokenComponent {
       const email = this.resetForm.get('email')?.value;
       this.resetPasswordService.requestPasswordReset(email).subscribe(
         response => {
-          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Solicitud de restablecimiento de contraseña enviada.' });
+          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Solicitud de restablecimiento de contraseña enviada. Revisa tu correo e ingresa el codigo que te enviamos.' });
           this.formSubmit.emit();
+          setTimeout(() => {
           this.router.navigate(['/reset-password']);
+          }, 5000);
         },
         error => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo enviar la solicitud de restablecimiento de contraseña.' });

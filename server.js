@@ -32,7 +32,7 @@ app.post('/send-email', (req, res) => {
           <blockquote>${mensaje}</blockquote>
           <p>Nos pondremos en contacto contigo pronto.</p>
           <p>Si necesitas comunicarte rápidamente, puedes escribirnos directamente por WhatsApp:</p>
-          <p><a href="https://wa.me/1234567890" target="_blank">Haz clic aquí para hablar en WhatsApp</a></p>
+          <p><a href="https://wa.me/573134396891" target="_blank">Haz clic aquí para hablar en WhatsApp</a></p>
           <p>¡Saludos cordiales!<br>El equipo de Michimed Veterinaria</p>
       `
   };

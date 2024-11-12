@@ -18,6 +18,7 @@ import { TiendaComponent } from './pages/tienda/tienda.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { AgendarCitaComponent } from './pages/agendar-cita/agendar-cita.component';
 import { GetTokenComponent } from './pages/get-token/get-token.component';
+import { VerCitasComponent } from './pages/ver-citas/ver-citas.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'historial-medico', component: HistorialMedicoComponent, canActivate: [AuthGuard] },
   { path: 'historial-medico/:id', component: HistorialMedicoComponent, canActivate: [AuthGuard] },
   { path: 'suministrar-tratamiento', component: SuministrarTratamientosComponent, canActivate: [AuthGuard] },
+  { path: 'ver-citas', component: VerCitasComponent, canActivate: [AuthGuard] },
   { path: 'calculadora-peso', component: CalculadoraPesoComponent },
   { path: 'agendar-cita', component: AgendarCitaComponent },
   { path: 'get-token', component: GetTokenComponent },
