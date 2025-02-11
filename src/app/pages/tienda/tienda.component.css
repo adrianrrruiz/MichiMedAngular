@@ -1,0 +1,18 @@
+#hero-tienda {
+  position: relative;
+  height: 400px;
+  color: white;
+  text-align: center;
+}
+
+#categorias-productos {
+  margin-top: 40px;
+}
+
+.producto-item {
+  transition: transform 0.2s;
+}
+
+.producto-item:hover {
+  transform: scale(1.05);
+}

@@ -1,7 +1,9 @@
 <app-layout></app-layout>
 
 <main id="content">
-  <h1 class="mb-3 text-center text-3xl">Todos nuestros clientes</h1>
+  <h1 class="mb-3 text-center text-3xl text-[var(--color-2)]">
+    Todos nuestros clientes
+  </h1>
   <p-toast></p-toast>
   <p-table
     #clientesTable
@@ -35,9 +37,7 @@
           type="button"
           pButton
           pRipple
-          label="Export"
-          icon="pi pi-upload"
-          class="p-button-help"
+          icon="pi pi-file-excel"
           (click)="exportExcel()"
           class="p-button-success mr-2"
           pTooltip="XLS"
@@ -46,10 +46,12 @@
         <button
           pButton
           pRipple
-          label="New"
+          id="btnNewCliente"
           icon="pi pi-plus"
-          class="p-button-success mr-2"
+          class="mr-2 bg-[var(--color-1)] text-white hover:bg-[var(--color-2)]"
           (click)="openNew()"
+          pTooltip="Agregar"
+          tooltipPosition="bottom"
         ></button>
       </div>
     </ng-template>
@@ -115,7 +117,7 @@
             type="button"
             icon="pi pi-eye"
             (click)="openView(cliente)"
-            class="p-button-rounded p-button-text"
+            class="p-button-rounded p-button-text text-[var(--color-1)]"
           ></button>
           <button
             *ngIf="!editing"
@@ -125,14 +127,14 @@
             pInitEditableRow
             icon="pi pi-pencil"
             (click)="onRowEditInit(cliente)"
-            class="p-button-rounded p-button-text"
+            class="p-button-rounded p-button-text text-[var(--color-1)]"
           ></button>
           <button
             *ngIf="!editing"
             pButton
             pRipple
             icon="pi pi-trash"
-            class="p-button-rounded p-button-warning"
+            class="p-button-rounded p-button-danger"
             (click)="deleteCliente(cliente.id, cliente.nombre)"
           ></button>
           <button
@@ -242,6 +244,7 @@
       pRipple
       label="Save"
       icon="pi pi-check"
+      id="btnSaveCliente"
       class="p-button-text"
       (click)="saveCliente()"
     ></button>
@@ -264,14 +267,16 @@
       <li>Cedula: <span [innerText]="selectedCliente.cedula"></span></li>
       <li>Email: <span [innerText]="selectedCliente.email"></span></li>
     </ul>
-    <h2 class="align-self-center text-xl font-bold mt-4">Mascotas:</h2>
+    <h2 class="align-self-center text-xl font-bold mt-4 text-[var(--color-1)]">
+      Mascotas:
+    </h2>
     <p *ngIf="mascotasCliente.length == 0">Por el momento no tiene mascotas</p>
     <div class="w-full grid grid-cols-2 gap-4 mt-3 h-auto">
       <div
         class="flex flex-col items-center"
         *ngFor="let mascota of mascotasCliente"
       >
-        <h3 [innerText]="mascota.nombre"></h3>
+        <h3 class="text-[var(--color-2)]" [innerText]="mascota.nombre"></h3>
         <img
           class="shadow-4 w-20 h-20 rounded-full object-cover img-fluid mt-2"
           src="{{ mascota.foto }}"

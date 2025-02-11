@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';  // Asegúrate de importar HttpClientModule
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';  // Asegúrate de importar HttpClientModule
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Importa ReactiveFormsModule
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,9 +23,25 @@ import { DashboardComponent } from './pages/panel/dashboard/dashboard.component'
 import { SuministrarTratamientosComponent } from './pages/panel/suministrar-tratamientos/suministrar-tratamientos.component';
 import { HistorialMedicoComponent } from './pages/panel/historial-medico/historial-medico.component';
 import { LoaderComponent } from './components/loader/loader.component';
-
-// Servicios (asegúrate de crear e importar el servicio si es necesario)
-import { DrogaService } from './services/drogas.service';  // Importa el servicio DrogaService
+import { CalculadoraPesoComponent } from './pages/calculadora-peso/calculadora-peso.component';
+import { CircularDiagramComponent } from './components/circular-diagram/circular-diagram.component';
+import { LinesChartComponent } from './components/lines-chart/lines-chart.component';
+import { DrogasAuxTableComponent } from './components/drogas-aux-table/drogas-aux-table.component';
+import { ProfitComponent } from './components/profit/profit.component';
+import { VeterinariosDsComponent } from './components/veterinarios-ds/veterinarios-ds.component';
+import { AuthInterceptor } from './helpers/auth.interceptor';
+import { AuthGuard } from './auth.guard';
+import { AdminGuard } from './admin.guard';
+import { TiendaComponent } from './pages/tienda/tienda.component';
+import { FormatoRecomendacionPipe } from './pipes/formato-recomendacion.pipe';
+import { HeroComponent } from './components/landing/hero/hero.component';
+import { OnlineServicesComponent } from './components/landing/online-services/online-services.component';
+import { GalleryGridComponent } from './components/landing/gallery-grid/gallery-grid.component';
+import { TestimoniosComponent } from './components/landing/testimonios/testimonios.component';
+import { FaqComponent } from './components/landing/faq/faq.component';
+import { ContactFormComponent } from './components/landing/contact-form/contact-form.component';
+import { DondeEncontrarnosComponent } from './components/landing/donde-encontrarnos/donde-encontrarnos.component';
+import { Btn1Component } from './components/landing/btn1/btn1.component';
 
 // PrimeNG Components
 import { TableModule } from 'primeng/table';
@@ -45,12 +61,13 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TimelineModule } from 'primeng/timeline';
 import { CardModule } from 'primeng/card';
-import { CircularDiagramComponent } from './components/circular-diagram/circular-diagram.component';
-import { LinesChartComponent } from './components/lines-chart/lines-chart.component';
-import { DrogasAuxTableComponent } from './components/drogas-aux-table/drogas-aux-table.component';
-import { ProfitComponent } from './components/profit/profit.component';
-import { VeterinariosDsComponent } from './components/veterinarios-ds/veterinarios-ds.component';
-
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { AgendarCitaComponent } from './pages/agendar-cita/agendar-cita.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { GetTokenComponent } from './pages/get-token/get-token.component';
+import { VerCitasComponent } from './pages/ver-citas/ver-citas.component';
+import { HomeComponent } from './pages/panel/home/home.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +91,23 @@ import { VeterinariosDsComponent } from './components/veterinarios-ds/veterinari
     DrogasAuxTableComponent,
     ProfitComponent,
     LoaderComponent,
-    VeterinariosDsComponent
+    VeterinariosDsComponent,
+    CalculadoraPesoComponent,
+    TiendaComponent,
+    FormatoRecomendacionPipe,
+    HeroComponent,
+    OnlineServicesComponent,
+    GalleryGridComponent,
+    TestimoniosComponent,
+    FaqComponent,
+    ContactFormComponent,
+    DondeEncontrarnosComponent,
+    Btn1Component,
+    AgendarCitaComponent,
+    ResetPasswordComponent,
+    GetTokenComponent,
+    VerCitasComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -99,11 +132,17 @@ import { VeterinariosDsComponent } from './components/veterinarios-ds/veterinari
     FileUploadModule,
     MultiSelectModule,
     TimelineModule,
-    CardModule
+    CardModule,
+    PanelMenuModule,
+    ProgressSpinnerModule
   ],
   providers: [
-    DrogaService   // Añade el servicio DrogaService en los providers si es necesario
+    {
+      provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+    },
+    AuthGuard,
+    AdminGuard,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, AuthGuard]
 })
 export class AppModule { }

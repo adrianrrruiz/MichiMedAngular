@@ -10,11 +10,10 @@
 
 .data li {
   list-style-type: none;
-  color: var(--text-secondary);
+  color: var(--color-1);
   font-weight: 700;
   margin: 10px 0;
   font-size: 1.1em;
-  color: var(--text-secondary);
 }
 
 .data li span {
@@ -26,5 +25,3 @@
   flex-grow: 1;
   flex-basis: 0;
 }
-
-

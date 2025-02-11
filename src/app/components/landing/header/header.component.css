@@ -1,4 +1,12 @@
+:host ::ng-deep .p-panelmenu-header-action{
+  text-decoration: none;
+}
 
+:host ::ng-deep .p-menuitem-text{
+  color: var(--text-color);
+  font-weight:400;
+}
 
-
-
+:host ::ng-deep .p-menuitem-icon, :host ::ng-deep .p-icon-wrapper{
+  color: var(--color-1);
+}

@@ -1,7 +1,9 @@
 <app-layout></app-layout>
 
 <main id="content">
-  <h1 class="mb-3 text-center text-3xl">Todos nuestros gatitos</h1>
+  <h1 class="mb-3 text-center text-3xl text-[var(--color-2)]">
+    Todos nuestros gatitos
+  </h1>
   <p-toast></p-toast>
   <p-table
     #mascotasTable
@@ -35,9 +37,7 @@
           type="button"
           pButton
           pRipple
-          label="Export"
-          icon="pi pi-upload"
-          class="p-button-help"
+          icon="pi pi-file-excel"
           (click)="exportExcel()"
           class="p-button-success mr-2"
           pTooltip="XLS"
@@ -46,10 +46,12 @@
         <button
           pButton
           pRipple
-          label="New"
+          id="btnNewMascota"
           icon="pi pi-plus"
-          class="p-button-success mr-2"
+          class="mr-2 bg-[var(--color-1)] text-white hover:bg-[var(--color-2)]"
           (click)="openNew()"
+          pTooltip="Agregar"
+          tooltipPosition="bottom"
         ></button>
       </div>
     </ng-template>
@@ -183,7 +185,7 @@
             type="button"
             icon="pi pi-eye"
             (click)="openView(mascota)"
-            class="p-button-rounded p-button-text"
+            class="p-button-rounded p-button-text text-[var(--color-1)]"
           ></button>
           <button
             *ngIf="!editing"
@@ -193,14 +195,14 @@
             pInitEditableRow
             icon="pi pi-pencil"
             (click)="onRowEditInit(mascota)"
-            class="p-button-rounded p-button-text"
+            class="p-button-rounded p-button-text text-[var(--color-1)]"
           ></button>
           <button
             *ngIf="!editing"
             pButton
             pRipple
             icon="pi pi-trash"
-            class="p-button-rounded p-button-warning"
+            class="p-button-rounded p-button-danger"
             (click)="deleteMascota(mascota.id, mascota.nombre)"
           ></button>
           <button
@@ -275,7 +277,10 @@
     <div class="formgrid flex mt-[1.70rem]">
       <div class="field primeng-col mr-3">
         <span class="p-float-label">
-          <p-inputNumber id="edad" [(ngModel)]="mascota.edad"></p-inputNumber>
+          <p-inputNumber
+            inputId="edad"
+            [(ngModel)]="mascota.edad"
+          ></p-inputNumber>
           <label htmlFor="edad">Edad (años)</label>
         </span>
         <small class="p-error" *ngIf="submitted && !mascota.edad"
@@ -284,7 +289,10 @@
       </div>
       <div class="field col primeng-col ml-3">
         <span class="p-float-label">
-          <p-inputNumber id="peso" [(ngModel)]="mascota.peso"></p-inputNumber>
+          <p-inputNumber
+            inputId="peso"
+            [(ngModel)]="mascota.peso"
+          ></p-inputNumber>
           <label htmlFor="peso">Peso (kg)</label>
         </span>
         <small class="p-error" *ngIf="submitted && !mascota.peso"
@@ -373,6 +381,7 @@
     <button
       pButton
       pRipple
+      id="btnSaveMascota"
       label="Guardar"
       icon="pi pi-check"
       class="p-button-text"
@@ -392,6 +401,7 @@
     <button
       pButton
       pRipple
+      id="btnSaveMascota"
       label="Save"
       icon="pi pi-check"
       class="p-button-text"

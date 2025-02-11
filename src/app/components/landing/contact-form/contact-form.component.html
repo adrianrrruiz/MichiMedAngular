@@ -1,0 +1,97 @@
+<section
+  id="contact"
+  class="px-6 py-12 text-center border-2 border-[var(--color-1)] rounded-3xl max-w-5xl mx-auto mt-12 mb-16 bg-[var(--color-3)] shadow-lg"
+>
+  <!-- Título del formulario -->
+  <h1 class="text-[var(--color-1)] text-4xl font-bold mb-6 tracking-wide">
+    Contáctanos
+  </h1>
+  <p class="text-lg text-[var(--text-secondary)] mb-8">
+    Estamos aquí para resolver tus dudas y ayudarte a brindar el mejor cuidado a
+    tu gato.
+  </p>
+
+  <!-- Formulario de contacto -->
+  <form (ngSubmit)="onSubmit()" class="space-y-6 max-w-4xl mx-auto">
+    <!-- Campo de Nombre -->
+    <div class="relative">
+      <label
+        class="absolute top-0 left-4 -mt-2 px-1 bg-[var(--color-3)] text-[var(--color-1)] text-sm font-semibold"
+        for="name"
+      >
+        Nombre
+      </label>
+      <input
+        type="text"
+        id="name"
+        placeholder="Escribe tu nombre completo"
+        required
+        class="w-full px-4 py-4 border border-[var(--color-1)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-1)] transition duration-200"
+        [(ngModel)]="formData.nombre"
+        name="name"
+      />
+    </div>
+
+    <!-- Campo de Correo Electrónico -->
+    <div class="relative">
+      <label
+        class="absolute top-0 left-4 -mt-2 px-1 bg-[var(--color-3)] text-[var(--color-1)] text-sm font-semibold"
+        for="email"
+      >
+        Correo Electrónico
+      </label>
+      <input
+        type="email"
+        id="email"
+        placeholder="Ingresa tu correo electrónico"
+        required
+        class="w-full px-4 py-4 border border-[var(--color-1)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-1)] transition duration-200"
+        [(ngModel)]="formData.email"
+        name="email"
+      />
+    </div>
+
+    <!-- Campo de Asunto -->
+    <div class="relative">
+      <label
+        class="absolute top-0 left-4 -mt-2 px-1 bg-[var(--color-3)] text-[var(--color-1)] text-sm font-semibold"
+        for="subject"
+      >
+        Asunto
+      </label>
+      <input
+        type="text"
+        id="subject"
+        placeholder="¿Sobre qué te gustaría hablar?"
+        required
+        class="w-full px-4 py-4 border border-[var(--color-1)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-1)] transition duration-200"
+        [(ngModel)]="formData.asunto"
+        name="subject"
+      />
+    </div>
+
+    <!-- Campo de Mensaje -->
+    <div class="relative">
+      <label
+        class="absolute top-0 left-4 -mt-2 px-1 bg-[var(--color-3)] text-[var(--color-1)] text-sm font-semibold"
+        for="message"
+      >
+        Mensaje
+      </label>
+      <textarea
+        id="message"
+        placeholder="Escribe tu mensaje aquí..."
+        required
+        class="w-full h-40 px-4 py-4 border border-[var(--color-1)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-1)] transition duration-200 resize-none"
+        [(ngModel)]="formData.mensaje"
+        name="message"
+      ></textarea>
+    </div>
+
+    <!-- Botón de Envío -->
+    <app-btn1 [label]="'Enviar Mensaje'" type="submit"></app-btn1>
+  </form>
+</section>
+
+<!-- Mensajes de notificación -->
+<p-toast></p-toast>

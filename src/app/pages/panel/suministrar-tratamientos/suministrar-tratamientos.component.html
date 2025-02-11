@@ -2,12 +2,13 @@
 
 <main id="content">
   <p-toast></p-toast>
-  <h1 class="mb-4 text-3xl">Agregar tratamiento</h1>
+  <h1 class="mb-4 text-3xl text-[var(--color-2)]">Agregar tratamiento</h1>
 
   <div class="w-1/4">
     <div class="field mt-[1rem]">
       <label for="mascotas">Mascota</label>
       <p-dropdown
+        id="mascotas"
         inputId="mascotas"
         [options]="mascotas"
         optionLabel="nombre"
@@ -15,7 +16,8 @@
         [(ngModel)]="tratamiento.mascota"
         [filter]="true"
         filterBy="nombre"
-        class="block w-full"
+        class="block"
+        [style]="{ width: '15rem' }"
       ></p-dropdown>
     </div>
 
@@ -29,7 +31,8 @@
         [(ngModel)]="tratamiento.veterinario"
         [filter]="true"
         filterBy="nombre"
-        class="block w-full"
+        class="block"
+        [style]="{ width: '15rem' }"
       ></p-dropdown>
     </div>
 
@@ -42,7 +45,7 @@
         [(ngModel)]="nombreVeterinario"
         autofocus
         disabled
-        class="block w-full"
+        class="block w-60"
       />
     </div>
 
@@ -50,22 +53,25 @@
       <label for="drogas">Drogas</label>
       <p-dropdown
         inputId="drogas"
+        inputId="drogas"
         [options]="drogas"
         optionLabel="nombre"
         [showClear]="true"
         [(ngModel)]="tratamiento.droga"
         [filter]="true"
         filterBy="nombre"
-        class="block w-full"
+        class="block"
+        [style]="{ width: '15rem' }"
       ></p-dropdown>
     </div>
 
-    <p-button
-      label="Registrar tratamiento"
-      [rounded]="true"
-      severity="secondary"
-      class="w-full"
-      (click)="saveTratamiento()"
-    ></p-button>
+    <div class="w-60">
+      <app-btn1
+        id="btnSaveTratamiento"
+        label="Registrar tratamiento"
+        icon="pi pi-history"
+        (onClick)="saveTratamiento()"
+      ></app-btn1>
+    </div>
   </div>
 </main>

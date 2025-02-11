@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { User } from '../../../model/user';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { ChatgptService } from 'src/app/services/chatgpt.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,33 +16,39 @@ export class SignInComponent {
   signInForm: FormGroup; // Formulario de inicio de sesión
   @Output() formSubmit = new EventEmitter<void>(); // Evento emitido al enviar formulario
 
+  fraseMotivacional: String = ''; // Frase motivacional
+
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private chatGptService: ChatgptService
   ) {
     this.signInForm = this.fb.group({
       // Inicializa el formulario con validaciones
       cedula: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
+
+    this.getFraseMotivacional();
   }
 
   onSubmit(): void {
     if (this.signInForm.valid) {
       const user: User = this.signInForm.value;
-      this.http.post<{id:number,  admin: boolean }>('http://localhost:8090/sign-in', user).subscribe(
+      this.http.post<{id:number,  isAdmin: boolean, token: string }>('http://localhost:8090/sign-in', user).subscribe(
         response => {
           localStorage.clear();
-          if(response.admin){
+          localStorage.setItem('token', response.token);
+          if(response.isAdmin){
             localStorage.setItem('admin', 'true');
             localStorage.setItem('idAdmin', response.id.toString());
             this.router.navigate(['/admin/dashboard']); // Navega al dashboard de administrador
           }else{
             localStorage.setItem('admin', 'false');
             localStorage.setItem('idVeterinario', response.id.toString());
-            this.router.navigate(['/mascotas']); // Navega a la pág de mascotas
+            this.router.navigate(['/home']); // Navega a la pág de mascotas
           }
           this.formSubmit.emit();
         },
@@ -50,7 +57,7 @@ export class SignInComponent {
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: error.error.message || 'Ha ocurrido un error durante el inicio de sesión'
+            detail: 'Usuario o contraseña incorrectos'
           });
         }
       );
@@ -62,5 +69,13 @@ export class SignInComponent {
         }
       });
     }
+  }
+
+  getFraseMotivacional(): void {
+    this.chatGptService.getFraseMotivacional().subscribe(
+      response => {
+        this.fraseMotivacional = response;
+      }
+    );
   }
 }
